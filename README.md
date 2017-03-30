@@ -2,9 +2,9 @@
 
 This's a academic project to analysis of crowd in simple videos and projection of events using OpenGL and Python.
 
-## Getting Started
+<!-- ## Getting Started -->
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+<!-- These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system. -->
 
 <!-- ### Prerequisites -->
 
@@ -72,7 +72,7 @@ These instructions will get you a copy of the project up and running on your loc
 * **Wagner Santos** - *Initial work* - [oswagner](https://github.com/oswagner)
 * **André Plass** - *Initial work* <!-- - [oswagner](https://github.com/oswagner) -->
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/oswagner/crowd-analysis/contributors) who participated in this project.
 
 ## License
 
