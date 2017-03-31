@@ -70,7 +70,7 @@ This's a academic project to analysis of crowd in simple videos and projection o
 ## Authors
 
 * **Wagner Santos** - *Initial work* - [oswagner](https://github.com/oswagner)
-* **André Plass** - *Initial work* <!-- - [oswagner](https://github.com/oswagner) -->
+* **André Plass** - *Initial work* ] -[pixelsir](https://github.com/pixelsir)
 
 See also the list of [contributors](https://github.com/oswagner/crowd-analysis/contributors) who participated in this project.
 
