@@ -1,4 +1,4 @@
-package com.company;
+package src.com.company;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -9,31 +9,49 @@ import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 public class Parser {
-    private File file = new File("<INSERIR URL DO ARQUIVO PATHS_D.TXT>");
-    List<List<Tuple>> peopleMatrix = new ArrayList<List<Tuple>>();
+    private String paths_d_1 = "Paths_D (1).txt";
+    private String paths_d_2 = "Paths_D (2).txt";
+    private String paths_d_3 = "Paths_D (3).txt";
+    private String paths_d_4 = "Paths_D (4).txt";
+
+    private File file = new File(paths_d_4);
+
+    private int pixelsToMeters;
+    private int index;
+
+    private List<List<Tuple>> peopleMatrix = new ArrayList<List<Tuple>>();
 
     public Parser() {
     }
 
-    public void parseFile() {
+    public void parseFileToMatrix() {
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            // matchers
+            Pattern pIndex = Pattern.compile("\\d*\\t");    // line start (number of coordinates per person)
+            Pattern px = Pattern.compile("\\(\\d*,");       // x coordinates
+            Pattern py = Pattern.compile(",\\d*,");         // y coordinates
+
+            int index = 0;
             String str;
 
-            Pattern pDelta = Pattern.compile("\\d*\\t");
-            Pattern px = Pattern.compile("\\(\\d*,");
-            Pattern py = Pattern.compile(",\\d*,");
+            // get pixels to meters
             str = br.readLine();
+            pixelsToMeters = Integer.parseInt(str.substring(1, str.length()-1));
+
+            // read new line
             while ((str = br.readLine()) != null) {
                 List<Tuple> peopleLine = new ArrayList<Tuple>();
-                System.out.println(str);
 
-                Matcher m = px.matcher(str);
-                int index = 0;
-                while (m.find()) {
-                    index++;
+                Matcher m = pIndex.matcher(str);
+                if (m.find()) {
+                    this.index = Integer.parseInt(m.group().substring(0, (m.group().length()-1)));
                 }
-                int x[] = new int[index];
-                int y[] = new int[index];
+
+                // create arrays
+                int x[] = new int[this.index];
+                int y[] = new int[this.index];
+
+                // apply x matcher
                 m = px.matcher(str);
                 index = 0;
                 while (m.find()) {
@@ -41,16 +59,19 @@ public class Parser {
                     index++;
                 }
 
+                // apply y matcher
                 m = py.matcher(str);
                 index = 0;
                 while (m.find()) {
                     y[index] = Integer.parseInt(m.group().substring(1, m.group().length() - 1));
                     index++;
                 }
+
+                // add coordinates to list
                 for (int i = 0; i < index; i++) {
-                    System.out.println("(" + x[i] + "," + y[i] + ")");
                     peopleLine.add(new Tuple(x[i], y[i]));
                 }
+                // add list to matrix
                 peopleMatrix.add(peopleLine);
             }
             br.close();
@@ -61,8 +82,9 @@ public class Parser {
 
     public void print() {
         int indexMatrix = peopleMatrix.size();
-        System.out.println("indexMatrix Size: " + indexMatrix);
-        for (int i=1; i < indexMatrix-1; i++) {
+        System.out.println("Pixels to meters: " + pixelsToMeters);
+        System.out.print("Matrix size: " + indexMatrix);
+        for (int i=0; i < indexMatrix; i++) {
             List<Tuple> tempList = peopleMatrix.get(i);
             System.out.println("\n\nPerson "  + i + ":  ");
             for (int j=0; j < tempList.size()-1; j++) {

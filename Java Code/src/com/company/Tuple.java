@@ -1,4 +1,4 @@
-package com.company;
+package src.com.company;
 
 /**
  * Created by andre on 03/04/2017.
