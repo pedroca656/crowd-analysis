@@ -1,37 +1,35 @@
-package src.com.company;
+package com.pucrs;
+
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Stream;
 
 public class Parser {
-    private String paths_d_1 = "Paths_D (1).txt";
-    private String paths_d_2 = "Paths_D (2).txt";
-    private String paths_d_3 = "Paths_D (3).txt";
-    private String paths_d_4 = "Paths_D (4).txt";
+    private final String paths_d_1 = "res/Paths_D (1).txt";
+    private final String paths_d_2 = "res/Paths_D (2).txt";
+    private final String paths_d_3 = "res/Paths_D (3).txt";
+    private final String paths_d_4 = "res/Paths_D (4).txt";
 
-    private File file = new File(paths_d_4);
+    private final File file = new File(paths_d_4);
 
     private int pixelsToMeters;
     private int index;
 
-    private List<List<Tuple>> peopleMatrix = new ArrayList<List<Tuple>>();
+    private final List<List<Tuple>> peopleMatrix = new ArrayList<>();
 
     public Parser() {
     }
 
     public void parseFileToMatrix() {
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            // matchers
+            // matcher
             Pattern pIndex = Pattern.compile("\\d*\\t");    // line start (number of coordinates per person)
             Pattern px = Pattern.compile("\\(\\d*,");       // x coordinates
             Pattern py = Pattern.compile(",\\d*,");         // y coordinates
 
-            int index = 0;
+            int index;
             String str;
 
             // get pixels to meters
@@ -40,7 +38,7 @@ public class Parser {
 
             // read new line
             while ((str = br.readLine()) != null) {
-                List<Tuple> peopleLine = new ArrayList<Tuple>();
+                List<Tuple> peopleLine = new ArrayList<>();
 
                 Matcher m = pIndex.matcher(str);
                 if (m.find()) {

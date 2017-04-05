@@ -58,10 +58,10 @@ This's a academic project to analysis of crowd in simple videos and projection o
 
 ## Built With
 
-* [Python](https://www.python.org/) - The base language
+* [Java](https://www.java.com/pt_BR/) - The base language
 * [OpenGL](https://www.opengl.org/) - The graphic language
 * [GLEW](http://glew.sourceforge.net/) - Support framework
-* [GLEW](http://www.glfw.org/) - Support framework
+* [GLFW](http://www.glfw.org/) - Support framework
 
 
 <!-- ## Versioning -->

@@ -1,10 +1,11 @@
-package src.com.company;
+package com.pucrs;
+
 
 /**
  * Created by andre on 03/04/2017.
  */
 public class Tuple {
-    private int x, y;
+    private final int x, y;
 
     public Tuple(int x, int y) {
         this.x = x;
