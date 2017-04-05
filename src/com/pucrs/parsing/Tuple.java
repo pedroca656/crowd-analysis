@@ -1,4 +1,4 @@
-package com.pucrs;
+package com.pucrs.parsing;
 
 
 /**
