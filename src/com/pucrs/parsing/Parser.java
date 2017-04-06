@@ -12,7 +12,7 @@ public class Parser {
     private final String paths_d_3 = "res/Paths_D (3).txt";
     private final String paths_d_4 = "res/Paths_D (4).txt";
 
-    private final File file = new File(paths_d_4);
+    private final File file = new File(paths_d_1);
 
     private int pixelsToMeters;
     private int index;
@@ -28,6 +28,7 @@ public class Parser {
             Pattern pIndex = Pattern.compile("\\d*\\t");    // line start (number of coordinates per person)
             Pattern px = Pattern.compile("\\(\\d*,");       // x coordinates
             Pattern py = Pattern.compile(",\\d*,");         // y coordinates
+            Pattern pframe = Pattern.compile("\\d*\\)");
 
             int index;
             String str;
@@ -45,9 +46,17 @@ public class Parser {
                     this.index = Integer.parseInt(m.group().substring(0, (m.group().length()-1)));
                 }
 
+                // get first frame the person appears
+                int frame = 0;
+                m = pframe.matcher(str);
+                if (m.find()) {
+                    frame = Integer.parseInt(m.group().substring(0, m.group().length()-1));
+                }
+
                 // create arrays
                 int x[] = new int[this.index];
                 int y[] = new int[this.index];
+
 
                 // apply x matcher
                 m = px.matcher(str);
@@ -66,7 +75,10 @@ public class Parser {
                 }
 
                 // add coordinates to list
-                for (int i = 0; i < index; i++) {
+                for (int i = 0; i < frame; i++) {
+                    peopleLine.add(null);
+                }
+                for (int i = 0; i < this.index; i++) {
                     peopleLine.add(new Tuple(x[i], y[i]));
                 }
                 // add list to matrix
@@ -85,11 +97,14 @@ public class Parser {
         for (int i=0; i < indexMatrix; i++) {
             List<Tuple> tempList = peopleMatrix.get(i);
             System.out.println("\n\nPerson "  + i + ":  ");
-            for (int j=0; j < tempList.size()-1; j++) {
-                Tuple tempTuple = tempList.get(j);
-                System.out.print("(" + tempTuple.getX() + "," + tempTuple.getY() + ") ");
+            for (int j=0; j < tempList.size(); j++) {
+                if (tempList.get(j) != null) {
+                    Tuple tempTuple = tempList.get(j);
+                    System.out.println("frame " + j + ": (" + tempTuple.getX() + "," + tempTuple.getY() + ") ");
+                } else {
+                    System.out.println("frame " + j + ": (null)");
+                }
             }
         }
     }
-
 }

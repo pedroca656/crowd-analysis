@@ -7,10 +7,10 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" scope="RUNTIME" name="jocl-java-src" level="project" />
-    <orderEntry type="library" exported="" scope="RUNTIME" name="jogl-java-src" level="project" />
-    <orderEntry type="library" exported="" scope="RUNTIME" name="joal-java-src" level="project" />
-    <orderEntry type="library" exported="" scope="RUNTIME" name="gluegen-java-src" level="project" />
+    <orderEntry type="library" exported="" name="jocl-java-src" level="project" />
+    <orderEntry type="library" exported="" name="jogl-java-src" level="project" />
+    <orderEntry type="library" exported="" name="joal-java-src" level="project" />
+    <orderEntry type="library" name="gluegen-java-src" level="project" />
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
@@ -2027,5 +2027,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="jars" level="project" />
   </component>
 </module>
