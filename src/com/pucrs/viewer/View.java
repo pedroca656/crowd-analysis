@@ -2,20 +2,26 @@ package com.pucrs.viewer;
 
 import com.jogamp.opengl.*;
 import com.jogamp.opengl.awt.GLCanvas;
+import com.pucrs.parsing.Tuple;
 
 import javax.swing.*;
-import java.awt.*;
+import java.util.List;
+import java.util.Random;
 
-/**
- * Created by wos on 05/04/17.
- */
 public class View extends JFrame implements GLEventListener {
+    private List<List<Tuple>> peopleMatrix;
+    private int totalFrames;
+    private Float pixelsToMeters;
 
-    final private int width = 800;
-    final private int height = 600;
+    final private int width = 1100;
+    final private int height = 900;
 
-    public View() {
+    public View(List<List<Tuple>> peopleMatrix, int totalFrames, Float pixelsToMeters) {
         super("Crowd Viewer Analysis");
+
+        this.peopleMatrix = peopleMatrix;
+        this.totalFrames = totalFrames;
+        this.pixelsToMeters = pixelsToMeters;
 
         GLProfile profile = GLProfile.get(GLProfile.GL2);
         GLCapabilities capabilities = new GLCapabilities(profile);
@@ -48,26 +54,50 @@ public class View extends JFrame implements GLEventListener {
     public void display(GLAutoDrawable drawable) {
         final GL2 gl = drawable.getGL().getGL2();
 
+        Random rand = new Random(255);
 
+        gl.glMatrixMode(gl.GL_PROJECTION);
+        gl.glLoadIdentity();
+        gl.glOrtho(0.0f, 3.8f, 4.8f, 0.0f, 0.0f, 1.0f);
         gl.glClearColor(0.392f, 0.584f, 0.929f, 1.0f);
 
-        gl.glBegin (gl.GL_LINES);
-        //drawing the base
-        gl.glBegin (gl.GL_LINES);
-        gl.glVertex3f(-0.50f, -0.50f, 0);
-        gl.glVertex3f(0.50f, -0.50f, 0);
-        gl.glEnd();
-        //drawing the right edge
-        gl.glBegin (gl.GL_LINES);
-        gl.glVertex3f(0f, 0.50f, 0);
-        gl.glVertex3f(-0.50f, -0.50f, 0);
-        gl.glEnd();
-        //drawing the lft edge
-        gl.glBegin (gl.GL_LINES);
-        gl.glVertex3f(0f, 0.50f, 0);
-        gl.glVertex3f(0.50f, -0.50f, 0);
-        gl.glEnd();
-        gl.glFlush();
+        Float xCoord;
+        Float yCoord;
+
+        for (int j = 0; j < peopleMatrix.size(); j++) {
+            gl.glColor3f(rand.nextFloat(), rand.nextFloat(), rand.nextFloat());
+            for (int i= 0; i < totalFrames; i++) {
+                if (peopleMatrix.get(j).get(i) != null) {
+
+                    xCoord = peopleMatrix.get(j).get(i).getX()/333; // division for scaling
+                    yCoord = peopleMatrix.get(j).get(i).getY()/333; // division for scaling
+
+
+                    gl.glBegin (gl.GL_LINES);
+                    // drawing left side
+                    gl.glBegin (gl.GL_LINES);
+                    gl.glVertex3f((xCoord-0.01f), (yCoord-0.01f), 0);
+                    gl.glVertex3f((xCoord-0.01f), (yCoord+0.01f), 0);
+                    gl.glEnd();
+                    // drawing top side
+                    gl.glBegin (gl.GL_LINES);
+                    gl.glVertex3f((xCoord-0.01f), (yCoord+0.01f), 0);
+                    gl.glVertex3f((xCoord+0.01f), (yCoord+0.01f), 0);
+                    gl.glEnd();
+                    // drawing right side
+                    gl.glBegin (gl.GL_LINES);
+                    gl.glVertex3f((xCoord+0.01f), (yCoord+0.01f), 0);
+                    gl.glVertex3f((xCoord+0.01f), (yCoord-0.01f), 0);
+                    gl.glEnd();
+                    // drawing bottom side
+                    gl.glBegin (gl.GL_LINES);
+                    gl.glVertex3f((xCoord+0.01f), (yCoord-0.01f), 0);
+                    gl.glVertex3f((xCoord-0.01f), (yCoord-0.01f), 0);
+                    gl.glEnd();
+                    gl.glFlush();
+                }
+            }
+        }
     }
 
     @Override

@@ -14,7 +14,7 @@ public class Parser {
 
     private List<List<Tuple>> peopleMatrix = new ArrayList<>();
 
-    private final File file = new File(paths_d_1);
+    private final File file = new File(paths_d_4);
 
     public static Float pixelsToMeters;
     private int totalFrames = 0;
@@ -93,7 +93,6 @@ public class Parser {
                     index++;
                 }
 
-                System.out.println("index; " + index);
                 // add coordinates to list
                 for (int i = 0; i < (firstFrame); i++) {
                     peopleLine.add(null);
@@ -142,5 +141,9 @@ public class Parser {
 
     public List<List<Tuple>> getPeopleMatrix() {
         return peopleMatrix;
+    }
+
+    public Float getPixelsToMeters() {
+        return pixelsToMeters;
     }
 }
