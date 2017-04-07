@@ -11,6 +11,6 @@ public class Main {
         p.print();
 
         //TODO: Fixed open a window and draw a triangle
-        new View();
+        //new View(p.getPeopleMatrix(), p.getTotalFrames());
     }
 }

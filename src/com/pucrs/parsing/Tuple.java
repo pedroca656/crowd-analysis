@@ -5,18 +5,18 @@ package com.pucrs.parsing;
  * Created by andre on 03/04/2017.
  */
 public class Tuple {
-    private final int x, y;
+    private Float x, y;
 
-    public Tuple(int x, int y) {
+    public Tuple(Float x, Float y) {
         this.x = x;
         this.y = y;
     }
 
-    public int getX() {
+    public Float getX() {
         return x;
     }
 
-    public int getY() {
+    public Float getY() {
         return y;
     }
 }
