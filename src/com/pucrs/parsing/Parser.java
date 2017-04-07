@@ -56,7 +56,7 @@ public class Parser {
 
             // get pixels to meters
             str = br.readLine();
-            pixelsToMeters = Float.parseFloat(str.substring(1, str.length()-1));
+            pixelsToMeters = Float.parseFloat(str.substring(1, str.length() - 1));
 
             while ((str = br.readLine()) != null) {
                 List<Tuple> peopleLine = new ArrayList<>();
@@ -64,13 +64,13 @@ public class Parser {
                 // get amount of coordinates per person
                 Matcher m = pindex.matcher(str);
                 if (m.find()) {
-                    size = Integer.parseInt(m.group().substring(0, (m.group().length()-1)));
+                    size = Integer.parseInt(m.group().substring(0, (m.group().length() - 1)));
                 }
 
                 // get first frame number matcher
                 m = pframe.matcher(str);
                 if (m.find()) {
-                    firstFrame = Integer.parseInt(m.group(0).substring(0, m.group().length()-1))-1;
+                    firstFrame = Integer.parseInt(m.group(0).substring(0, m.group().length() - 1)) - 1;
                 }
 
                 // create arrays
@@ -98,9 +98,9 @@ public class Parser {
                     peopleLine.add(null);
                 }
                 for (int i = 0; i < size; i++) {
-                    peopleLine.add(new Tuple(x[i], y[i]));
+                    peopleLine.add(new Tuple((x[i]/pixelsToMeters), (y[i]/pixelsToMeters)));
                 }
-                for (int i = 0; i < (totalFrames-firstFrame-size); i++) {
+                for (int i = 0; i < (totalFrames - firstFrame - size); i++) {
                     peopleLine.add(null);
                 }
                 // add list to matrix
@@ -111,8 +111,6 @@ public class Parser {
             e.printStackTrace();
         }
     }
-
-
 
     public void print() {
         int indexMatrix = peopleMatrix.size();

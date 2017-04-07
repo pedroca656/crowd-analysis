@@ -55,6 +55,7 @@ public class View extends JFrame implements GLEventListener {
         final GL2 gl = drawable.getGL().getGL2();
 
         Random rand = new Random(255);
+        float color = 50f;
 
         gl.glMatrixMode(gl.GL_PROJECTION);
         gl.glLoadIdentity();
@@ -64,14 +65,14 @@ public class View extends JFrame implements GLEventListener {
         Float xCoord;
         Float yCoord;
 
-        for (int j = 0; j < peopleMatrix.size(); j++) {
-            gl.glColor3f(rand.nextFloat(), rand.nextFloat(), rand.nextFloat());
-            for (int i= 0; i < totalFrames; i++) {
-                if (peopleMatrix.get(j).get(i) != null) {
+        for (int j = 0; j < totalFrames; j++) {
+            gl.glColor3f(color, color, color);
+            color = color + 5f;
+            for (int i= 0; i < peopleMatrix.size(); i++) {
+                if (peopleMatrix.get(i).get(j) != null) {
 
-                    xCoord = peopleMatrix.get(j).get(i).getX()/333; // division for scaling
-                    yCoord = peopleMatrix.get(j).get(i).getY()/333; // division for scaling
-
+                    xCoord = peopleMatrix.get(i).get(j).getX()/3.5f; // division for scaling
+                    yCoord = peopleMatrix.get(i).get(j).getY()/3.5f; // division for scaling
 
                     gl.glBegin (gl.GL_LINES);
                     // drawing left side
