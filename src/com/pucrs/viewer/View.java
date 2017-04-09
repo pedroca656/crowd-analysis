@@ -2,21 +2,21 @@ package com.pucrs.viewer;
 
 import com.jogamp.opengl.*;
 import com.jogamp.opengl.awt.GLCanvas;
-import com.pucrs.parsing.Tuple;
+import com.pucrs.parsing.Person;
 
 import javax.swing.*;
 import java.util.List;
 import java.util.Random;
 
 public class View extends JFrame implements GLEventListener {
-    private List<List<Tuple>> peopleMatrix;
+    private List<List<Person>> peopleMatrix;
     private int totalFrames;
     private Float pixelsToMeters;
 
     final private int width = 1100;
     final private int height = 900;
 
-    public View(List<List<Tuple>> peopleMatrix, int totalFrames, Float pixelsToMeters) {
+    public View(List<List<Person>> peopleMatrix, int totalFrames, Float pixelsToMeters) {
         super("Crowd Viewer Analysis");
 
         this.peopleMatrix = peopleMatrix;
@@ -66,15 +66,13 @@ public class View extends JFrame implements GLEventListener {
         Float yCoord;
 
         for (int j = 0; j < totalFrames; j++) {
-            gl.glColor3f(color, color, color);
-            color = color + 5f;
+            gl.glColor3f(rand.nextFloat(), rand.nextFloat(), rand.nextFloat());
             for (int i= 0; i < peopleMatrix.size(); i++) {
                 if (peopleMatrix.get(i).get(j) != null) {
 
                     xCoord = peopleMatrix.get(i).get(j).getX()/3.5f; // division for scaling
                     yCoord = peopleMatrix.get(i).get(j).getY()/3.5f; // division for scaling
 
-                    gl.glBegin (gl.GL_LINES);
                     // drawing left side
                     gl.glBegin (gl.GL_LINES);
                     gl.glVertex3f((xCoord-0.01f), (yCoord-0.01f), 0);

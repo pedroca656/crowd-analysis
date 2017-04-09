@@ -1,15 +1,13 @@
 package com.pucrs.parsing;
 
-
-/**
- * Created by andre on 03/04/2017.
- */
-public class Tuple {
+public class Person {
     private Float x, y;
+    private int number;
 
-    public Tuple(Float x, Float y) {
+    public Person(Float x, Float y, int number) {
         this.x = x;
         this.y = y;
+        this.number = number;
     }
 
     public Float getX() {
@@ -18,5 +16,9 @@ public class Tuple {
 
     public Float getY() {
         return y;
+    }
+
+    public int getNumber() {
+        return number;
     }
 }
