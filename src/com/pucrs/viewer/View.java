@@ -2,21 +2,21 @@ package com.pucrs.viewer;
 
 import com.jogamp.opengl.*;
 import com.jogamp.opengl.awt.GLCanvas;
-import com.pucrs.parsing.Person;
+import com.pucrs.parsing.PeopleCoordinate;
 
 import javax.swing.*;
 import java.util.List;
 import java.util.Random;
 
 public class View extends JFrame implements GLEventListener {
-    private List<List<Person>> peopleMatrix;
+    private List<List<PeopleCoordinate>> peopleMatrix;
     private int totalFrames;
     private Float pixelsToMeters;
 
     final private int width = 1100;
     final private int height = 900;
 
-    public View(List<List<Person>> peopleMatrix, int totalFrames, Float pixelsToMeters) {
+    public View(List<List<PeopleCoordinate>> peopleMatrix, int totalFrames, Float pixelsToMeters) {
         super("Crowd Viewer Analysis");
 
         this.peopleMatrix = peopleMatrix;

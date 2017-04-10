@@ -1,10 +1,10 @@
 package com.pucrs.parsing;
 
-public class Person {
+public class PeopleCoordinate {
     private Float x, y;
     private int number;
 
-    public Person(Float x, Float y, int number) {
+    public PeopleCoordinate(Float x, Float y, int number) {
         this.x = x;
         this.y = y;
         this.number = number;

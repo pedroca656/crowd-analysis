@@ -12,7 +12,7 @@ public class Parser {
     private final String paths_d_3 = "res/Paths_D (3).txt";
     private final String paths_d_4 = "res/Paths_D (4).txt";
 
-    private List<List<Person>> peopleMatrix = new ArrayList<>();
+    private List<List<PeopleCoordinate>> peopleMatrix = new ArrayList<>();
 
     private final File file = new File(paths_d_4);
 
@@ -55,14 +55,13 @@ public class Parser {
         // second read: build matrix
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 
-            personNumber++;
-
             // get pixels to meters
             str = br.readLine();
             pixelsToMeters = Float.parseFloat(str.substring(1, str.length() - 1));
 
             while ((str = br.readLine()) != null) {
-                List<Person> peopleLine = new ArrayList<>();
+                personNumber++;
+                List<PeopleCoordinate> peopleLine = new ArrayList<>();
 
                 // get amount of coordinates per person
                 Matcher m = pindex.matcher(str);
@@ -101,7 +100,7 @@ public class Parser {
                     peopleLine.add(null);
                 }
                 for (int i = 0; i < size; i++) {
-                    peopleLine.add(new Person((x[i]/pixelsToMeters), (y[i]/pixelsToMeters), personNumber));
+                    peopleLine.add(new PeopleCoordinate((x[i]/pixelsToMeters), (y[i]/pixelsToMeters), personNumber));
                 }
                 for (int i = 0; i < (totalFrames - firstFrame - size); i++) {
                     peopleLine.add(null);
@@ -121,18 +120,18 @@ public class Parser {
         System.out.println("|--pixels to meters: " + pixelsToMeters);
         System.out.println("|--number of people in set: " + indexMatrix);
         System.out.println("|--total number of frames: " + totalFrames);
-        for (int i=0; i < indexMatrix; i++) {
-            List<Person> tempList = peopleMatrix.get(i);
-            System.out.println("\n|--Person "  + i + ":  ");
-            for (int j=0; j < tempList.size(); j++) {
-                if (tempList.get(j) != null) {
-                    Person tempPerson = tempList.get(j);
-                    System.out.println("| frame " + j + ": (" + tempPerson.getX() + "," + tempPerson.getY() + ") ");
-                } else {
-                    System.out.println("| frame " + j + ": (null)");
-                }
-            }
-        }
+//        for (int i=0; i < indexMatrix; i++) {
+//            List<PeopleCoordinate> tempList = peopleMatrix.get(i);
+//            System.out.println("\n|--Person "  + i + ":  ");
+//            for (int j=0; j < tempList.size(); j++) {
+//                if (tempList.get(j) != null) {
+//                    PeopleCoordinate tempPerson = tempList.get(j);
+//                    System.out.println("| frame " + j + ": (" + tempPerson.getX() + "," + tempPerson.getY() + ") ");
+//                } else {
+//                    System.out.println("| frame " + j + ": (null)");
+//                }
+//            }
+//        }
         System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
     }
 
@@ -140,7 +139,7 @@ public class Parser {
         return totalFrames;
     }
 
-    public List<List<Person>> getPeopleMatrix() {
+    public List<List<PeopleCoordinate>> getPeopleMatrix() {
         return peopleMatrix;
     }
 
