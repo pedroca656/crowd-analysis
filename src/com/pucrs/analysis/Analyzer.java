@@ -2,6 +2,7 @@ package com.pucrs.analysis;
 
 import com.pucrs.parsing.PeopleCoordinate;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,62 +12,61 @@ import static java.lang.Math.sqrt;
 
 public class Analyzer {
     private List<List<PeopleCoordinate>> peopleMatrix;
+    private int totalFrames;
 
-    public Analyzer(List<List<PeopleCoordinate>> peopleMatrix) {
+    public Analyzer(List<List<PeopleCoordinate>> peopleMatrix, int totalFrames) {
         this.peopleMatrix = peopleMatrix;
+        this.totalFrames = totalFrames;
     }
 
     // analyzes if there are pairs of people walking or standing still together
     public void findPairs() {
+        int frameIndex = 0;
+        double distance = 0;
 
-        List<List<PeopleCoordinate>> analysisMatrix = new ArrayList<>();
-        List<PeopleCoordinate> closePeople = new ArrayList<>();
-        // cópia da peopleMatrix com listas de Pessoas dentro (se no frame uma pessoa estava a X de distancia de
-        // outra pessoa, adicona seu companheiro nessa lista. Se ao menos em Y% dos frames totais existentes eles estao
-        // um na lista do outro, contar como um par (evento))
+        // creates new analysis matrix to receive results (matrix index = frame; list index = Pair)
+        // list[i][j] -> [i] = frame number; [j] = amount of Pairs in that frame
+        List<List<Pair>> analysisMatrix = new ArrayList<>();
 
-        int personsIndex = peopleMatrix.size();
+        // for all frames
+        while (frameIndex < totalFrames) {
+            // create an inner list to hold the pairs
+            analysisMatrix.add(frameIndex, new ArrayList<Pair>());
+            // for all people in the list
+            for (int j = 0; j < peopleMatrix.size(); j++) {
+                // test them against all *other* people in the list
+                for (int g = 0; g < peopleMatrix.size(); g++) {
+                    // if not comparing a person with itself
+                    if (g != j) {
+                        // get data
+                        PeopleCoordinate first = peopleMatrix.get(j).get(frameIndex);
+                        PeopleCoordinate second = peopleMatrix.get(g).get(frameIndex);
 
-        // compara a distancia entre todos da matriz
-        for (int i = 0; i < personsIndex; i++) {
-            List<PeopleCoordinate> peopleCoordinates = peopleMatrix.get(i);
-            for (int j = 1; j < personsIndex -1 ; j++) {
-                System.out.print("Person = " + i + " and Person = " + j );
+                        // if data is not null
+                        if ((first != null) && (second != null)) {
+                            System.out.print("(Person " + j + " ,Person " + (g) + ")" );
 
-                List<PeopleCoordinate> innerPeopleCoordinates = peopleMatrix.get(j);
-                PeopleCoordinate externalPeopleCoordinate = peopleCoordinates.get(i);
-                PeopleCoordinate innerPeopleCoordinate = innerPeopleCoordinates.get(j);
+                            // get people position
+                            Float firstX = first.getX();
+                            Float firstY = first.getY();
+                            Float secondX = second.getX();
+                            Float secondY = second.getY();
 
-                Float externalX = externalPeopleCoordinate.getX();
-                Float externalY = externalPeopleCoordinate.getY();
+                            // calculate distance
+                            distance = calculateDistance(firstX, secondX, firstY, secondY);
+                            System.out.println(" -> " + distance + " m apart");
 
-                Float innerX = innerPeopleCoordinate.getX();
-                Float innerY = innerPeopleCoordinate.getY();
-
-                double distance = calculateDistance(externalX, innerX, externalY, innerY);
-                System.out.println(" they are close " + distance + " meters");
-
-                if (distance < 2.0) {
-                    closePeople.add(innerPeopleCoordinate);
-                    closePeople.add(externalPeopleCoordinate);
-                    analysisMatrix.add(closePeople);
+                            // if people less than 2.0m distant -> add to list of Pairs in frame
+                            if (distance < 2.0) {
+                                analysisMatrix.get(frameIndex).add(new Pair(first, second)); // i = frame
+                            }
+                        }
+                    }
                 }
             }
+            frameIndex++;
         }
-
-//        for (int i=0; i < personsIndex; i++) {
-//            List<PeopleCoordinate> tempList = analysisMatrix.get(i);
-//            System.out.println("\n|--Person "  + i + ":  ");
-//            for (int j=0; j < tempList.size(); j++) {
-//                if (tempList.get(j) != null) {
-//                    PeopleCoordinate tempPerson = tempList.get(j);
-//                    System.out.println("| frame " + j + ": (" + tempPerson.getX() + "," + tempPerson.getY() + ") ");
-//                } else {
-//                    System.out.println("| frame " + j + ": (null)");
-//                }
-//            }
-//        }
-
+        print(analysisMatrix);
     }
 
     // analyzes if some person crossed paths with another
@@ -80,5 +80,16 @@ public class Analyzer {
         Float term2 = y2 - y1;
         double expression = (pow(term1, 2) + pow(term2, 2));
         return round(sqrt(expression));
+    }
+
+    // prints pairs detected by frame
+    private void print(List<List<Pair>> analysisMatrix) {
+        for (int i=0; i < analysisMatrix.size(); i++) {
+            System.out.println("Frame " + i + " --------------------");
+            for (int j=0; j < analysisMatrix.get(i).size(); j++) {
+                System.out.println("Pair found: " + analysisMatrix.get(i).get(j).getFirst().getNumber() + " and " + analysisMatrix.get(i).get(j).getSencond().getNumber());
+            }
+
+        }
     }
 }

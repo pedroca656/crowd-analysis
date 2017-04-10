@@ -14,7 +14,7 @@ public class Main {
         //TODO: Fixed open a window and draw a triangle
 //        new View(p.getPeopleMatrix(), p.getTotalFrames(), p.getPixelsToMeters());
 
-        Analyzer a = new Analyzer(p.getPeopleMatrix());
+        Analyzer a = new Analyzer(p.getPeopleMatrix(), p.getTotalFrames());
 
         a.findPairs();
     }
