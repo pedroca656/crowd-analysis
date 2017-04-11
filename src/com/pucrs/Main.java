@@ -7,15 +7,18 @@ import com.pucrs.viewer.View;
 public class Main {
 
     public static void main(String[] args) {
+        // parse file
         Parser p = new Parser();
-        p.parseFileToMatrix();
-//        p.print();
+        p.parseFile();
+        p.print();
 
-        //TODO: Fixed open a window and draw a triangle
-//        new View(p.getPeopleMatrix(), p.getTotalFrames(), p.getPixelsToMeters());
+        // analyze file
+//        Analyzer a = new Analyzer(p.getDataPackage());
+//        a.findPairs();
 
-        Analyzer a = new Analyzer(p.getPeopleMatrix(), p.getTotalFrames());
+        // create view
+        new View(p.getDataPackage());
 
-        a.findPairs();
+
     }
 }

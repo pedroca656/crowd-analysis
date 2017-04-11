@@ -2,26 +2,29 @@ package com.pucrs.viewer;
 
 import com.jogamp.opengl.*;
 import com.jogamp.opengl.awt.GLCanvas;
-import com.pucrs.parsing.PeopleCoordinate;
+import com.pucrs.parsing.DataPackage;
+import com.pucrs.parsing.Person;
 
 import javax.swing.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class View extends JFrame implements GLEventListener {
-    private List<List<PeopleCoordinate>> peopleMatrix;
+    private List<List<Person>> dataMatrix;
     private int totalFrames;
-    private Float pixelsToMeters;
 
-    final private int width = 1100;
-    final private int height = 900;
+    private final int width = 1000;
+    private final int height = 800;
+    private Integer maxWidth, maxHeight;
 
-    public View(List<List<PeopleCoordinate>> peopleMatrix, int totalFrames, Float pixelsToMeters) {
-        super("Crowd Viewer Analysis");
+    public View(DataPackage dataPackage) {
+        super("crowd-analysis");
 
-        this.peopleMatrix = peopleMatrix;
-        this.totalFrames = totalFrames;
-        this.pixelsToMeters = pixelsToMeters;
+        this.dataMatrix = dataPackage.getDataMatrix();
+        this.totalFrames = dataPackage.getTotalFrames();
+        this.maxWidth = dataPackage.getMaxWidth();
+        this.maxHeight = dataPackage.getMaxHeight();
 
         GLProfile profile = GLProfile.get(GLProfile.GL2);
         GLCapabilities capabilities = new GLCapabilities(profile);
@@ -29,7 +32,7 @@ public class View extends JFrame implements GLEventListener {
         GLCanvas canvas = new GLCanvas(capabilities);
         canvas.addGLEventListener(this);
 
-        this.setName("Minimal OpenGL");
+        this.setName("crowd-analysis");
         this.getContentPane().add(canvas);
         this.setSize(width, height);
         this.setLocationRelativeTo(null);
@@ -54,46 +57,66 @@ public class View extends JFrame implements GLEventListener {
     public void display(GLAutoDrawable drawable) {
         final GL2 gl = drawable.getGL().getGL2();
 
+        // set colouring tools
         Random rand = new Random(255);
-        float color = 50f;
+        List<List<Integer>> colorList  = new ArrayList<List<Integer>>();
+        for (int i = 0; i < dataMatrix.size(); i++) {
+            ArrayList<Integer> rgb = new ArrayList<Integer>();
+            rgb.add(rand.nextInt());
+            rgb.add(rand.nextInt());
+            rgb.add(rand.nextInt());
+            colorList.add(rgb);
+        }
 
         gl.glMatrixMode(gl.GL_PROJECTION);
         gl.glLoadIdentity();
-        gl.glOrtho(0.0f, 3.8f, 4.8f, 0.0f, 0.0f, 1.0f);
+        gl.glOrtho(0.0f, 4f, 5f, 0.0f, 0.0f, 1.0f);
         gl.glClearColor(0.392f, 0.584f, 0.929f, 1.0f);
+
+        float value = 0.01f;
 
         Float xCoord;
         Float yCoord;
 
         for (int j = 0; j < totalFrames; j++) {
-            gl.glColor3f(rand.nextFloat(), rand.nextFloat(), rand.nextFloat());
-            for (int i= 0; i < peopleMatrix.size(); i++) {
-                if (peopleMatrix.get(i).get(j) != null) {
+            for (int i = 0; i < dataMatrix.size(); i++) {
+                if (dataMatrix.get(i).get(j) != null) {
+                    // set color
+                    gl.glColor3f(colorList.get(i).get(0), colorList.get(i).get(1), colorList.get(i).get(2));
 
-                    xCoord = peopleMatrix.get(i).get(j).getX()/3.5f; // division for scaling
-                    yCoord = peopleMatrix.get(i).get(j).getY()/3.5f; // division for scaling
+                    // get coords
+                    xCoord = dataMatrix.get(i).get(j).getX()/350;
+                    yCoord = dataMatrix.get(i).get(j).getY()/350;
+
+                    if (j == 0) {
+                        value = value + 0.02f;
+                    }
 
                     // drawing left side
                     gl.glBegin (gl.GL_LINES);
-                    gl.glVertex3f((xCoord-0.01f), (yCoord-0.01f), 0);
-                    gl.glVertex3f((xCoord-0.01f), (yCoord+0.01f), 0);
+                    gl.glVertex3f((xCoord-value), (yCoord-value), 0);
+                    gl.glVertex3f((xCoord-value), (yCoord+value), 0);
                     gl.glEnd();
                     // drawing top side
                     gl.glBegin (gl.GL_LINES);
-                    gl.glVertex3f((xCoord-0.01f), (yCoord+0.01f), 0);
-                    gl.glVertex3f((xCoord+0.01f), (yCoord+0.01f), 0);
+                    gl.glVertex3f((xCoord-value), (yCoord+value), 0);
+                    gl.glVertex3f((xCoord+value), (yCoord+value), 0);
                     gl.glEnd();
                     // drawing right side
                     gl.glBegin (gl.GL_LINES);
-                    gl.glVertex3f((xCoord+0.01f), (yCoord+0.01f), 0);
-                    gl.glVertex3f((xCoord+0.01f), (yCoord-0.01f), 0);
+                    gl.glVertex3f((xCoord+value), (yCoord+value), 0);
+                    gl.glVertex3f((xCoord+value), (yCoord-value), 0);
                     gl.glEnd();
                     // drawing bottom side
                     gl.glBegin (gl.GL_LINES);
-                    gl.glVertex3f((xCoord+0.01f), (yCoord-0.01f), 0);
-                    gl.glVertex3f((xCoord-0.01f), (yCoord-0.01f), 0);
+                    gl.glVertex3f((xCoord+value), (yCoord-value), 0);
+                    gl.glVertex3f((xCoord-value), (yCoord-value), 0);
                     gl.glEnd();
                     gl.glFlush();
+
+                    if (j == 0) {
+                        value = value - 0.02f;
+                    }
                 }
             }
         }

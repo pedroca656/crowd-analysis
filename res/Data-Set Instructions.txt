@@ -21,7 +21,7 @@ Contains a simple list of all the names of frames to be processed for that video
 OUTPUT FILES:
 
 * GROUPS_DATA.txt
-Contains data about each group found by our method, such as: number of people, distances between agents, speed, angular variation, area, collectivity, disturbance and cohesion.
+Contains data about each group found by our method, such as: id of people, distances between agents, speed, angular variation, area, collectivity, disturbance and cohesion.
 
 * GROUPS_INFO.txt
 Contains data about people across frames. The values are:

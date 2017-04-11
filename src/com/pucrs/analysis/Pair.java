@@ -1,21 +1,21 @@
 package com.pucrs.analysis;
 
-import com.pucrs.parsing.PeopleCoordinate;
+import com.pucrs.parsing.Person;
 
 public class Pair {
-    private PeopleCoordinate first;
-    private PeopleCoordinate second;
+    private Person first;
+    private Person second;
 
-    public Pair(PeopleCoordinate first, PeopleCoordinate second) {
+    public Pair(Person first, Person second) {
         this.first = first;
         this.second = second;
     }
 
-    public PeopleCoordinate getFirst() {
+    public Person getFirst() {
         return first;
     }
 
-    public PeopleCoordinate getSencond()
+    public Person getSencond()
     {
         return second;
     }
