@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Random;
 
 public class View extends JFrame implements GLEventListener {
-    private List<List<Person>> dataMatrix;
+    private List<Person> dataMatrix;
     private int totalFrames;
 
     private final int width = 1000;
@@ -77,19 +77,23 @@ public class View extends JFrame implements GLEventListener {
 
         Float xCoord;
         Float yCoord;
+        List<Float> xCoordsList;
+        List<Float> yCoordsList;
 
-        for (int j = 0; j < totalFrames; j++) {
-            for (int i = 0; i < dataMatrix.size(); i++) {
-                if (dataMatrix.get(i).get(j) != null) {
+        for (int i = 0; i < dataMatrix.size(); i++) {
+            // get coordsList
+            xCoordsList = dataMatrix.get(i).getxCoords();
+            yCoordsList = dataMatrix.get(i).getyCoords();
+            for (int j = 0; j < totalFrames; j++) {
+                if (xCoordsList.get(j) != null) {
                     // set color
                     gl.glColor3f(colorList.get(i).get(0), colorList.get(i).get(1), colorList.get(i).get(2));
 
-                    // get coords
-                    xCoord = dataMatrix.get(i).get(j).getX()/350;
-                    yCoord = dataMatrix.get(i).get(j).getY()/350;
+                    xCoord = xCoordsList.get(j)/350f;
+                    yCoord = yCoordsList.get(j)/350f;
 
                     if (j == 0) {
-                        value = value + 0.02f;
+                        value = value + 0.015f;
                     }
 
                     // drawing left side
@@ -115,7 +119,7 @@ public class View extends JFrame implements GLEventListener {
                     gl.glFlush();
 
                     if (j == 0) {
-                        value = value - 0.02f;
+                        value = value - 0.015f;
                     }
                 }
             }

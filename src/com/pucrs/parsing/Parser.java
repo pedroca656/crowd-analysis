@@ -12,7 +12,7 @@ public class Parser {
     private final String paths_d_3 = "res/Paths_D (3).txt";
     private final String paths_d_4 = "res/Paths_D (4).txt";
 
-    private List<List<Person>> dataMatrix = new ArrayList<>();
+    private List<Person> dataMatrix = new ArrayList<Person>();
 
     private final File file = new File(paths_d_4);
 
@@ -77,6 +77,10 @@ public class Parser {
                 // create lists
                 List<Float> x = new ArrayList<Float>();
                 List<Float> y = new ArrayList<Float>();
+                for (int i = 0; i < (firstFrame); i++) {
+                    x.add(null);
+                    y.add(null);
+                }
 
                 // apply x matcher
                 m = px.matcher(str);
@@ -96,18 +100,12 @@ public class Parser {
                     }
                 }
 
-                // add coordinates to list
-                for (int i = 0; i < (firstFrame); i++) {
-                    peopleLine.add(null);
-                }
-                for (int i = 0; i < size; i++) {
-                    peopleLine.add(new Person((x.get(i)), (y.get(i)), personNumber));
-                }
                 for (int i = 0; i < (totalFrames - firstFrame - size); i++) {
-                    peopleLine.add(null);
+                    x.add(null);
+                    y.add(null);
                 }
-                // add list to matrix
-                dataMatrix.add(peopleLine);
+                // add Person to matrix
+                dataMatrix.add(new Person(x, y, personNumber));
             }
             br.close();
         } catch (IOException e) {
@@ -121,18 +119,16 @@ public class Parser {
         System.out.println("|--total number of frames: " + totalFrames);
         System.out.println("|--maxWidth: " + maxWidth);
         System.out.println("|--maxHeight: " + maxHeight);
-//        for (int i=0; i < indexMatrix; i++) {
-//            List<Person> tempList = dataMatrix.get(i);
-//            System.out.println("\n|--Person "  + i + ":  ");
-//            for (int j=0; j < tempList.size(); j++) {
-//                if (tempList.get(j) != null) {
-//                    Person tempPerson = tempList.get(j);
-//                    System.out.println("| frame " + j + ": (" + tempPerson.getX() + "," + tempPerson.getY() + ") ");
-//                } else {
-//                    System.out.println("| frame " + j + ": (null)");
-//                }
-//            }
-//        }
+        for (int i=0; i < dataMatrix.size(); i++) {
+            System.out.println("\n|--Person "  + i + ":  ");
+            for (int j=0; j < totalFrames; j++) {
+                if (dataMatrix.get(i).getxCoords().get(j) != null) {
+                    System.out.println("| frame " + j + ": (" + dataMatrix.get(i).getxCoords().get(j) + "," + dataMatrix.get(i).getyCoords().get(j) + ") ");
+                } else {
+                    System.out.println("| frame " + j + ": (null, null)");
+                }
+            }
+        }
         System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
     }
 

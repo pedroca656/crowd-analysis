@@ -10,15 +10,13 @@ public class Main {
         // parse file
         Parser p = new Parser();
         p.parseFile();
-        p.print();
+//        p.print();
 
         // analyze file
-//        Analyzer a = new Analyzer(p.getDataPackage());
-//        a.findPairs();
+        Analyzer a = new Analyzer(p.getDataPackage());
+        a.findPairs();
 
         // create view
-        new View(p.getDataPackage());
-
-
+        //new View(p.getDataPackage());
     }
 }
