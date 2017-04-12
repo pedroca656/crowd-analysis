@@ -60,7 +60,6 @@ public class Parser {
 
             while ((str = br.readLine()) != null) {
                 personNumber++;
-                List<Person> peopleLine = new ArrayList<>();
 
                 // get amount of coordinates per person
                 Matcher m = pindex.matcher(str);

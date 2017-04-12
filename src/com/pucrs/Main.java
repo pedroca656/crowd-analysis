@@ -14,9 +14,9 @@ public class Main {
 
         // analyze file
         Analyzer a = new Analyzer(p.getDataPackage());
-        a.findPairs();
+        a.printPairDetection();
 
         // create view
-        //new View(p.getDataPackage());
+        new View(p.getDataPackage());
     }
 }
