@@ -1,6 +1,6 @@
 # crowd-analysis
 
-This's a academic project to analysis of crowd in simple videos and projection of events using OpenGL and Python.
+This's a academic project to analysis of crowd in simple videos and projection of events using OpenGL and Java.
 
 <!-- ## Getting Started -->
 
@@ -60,8 +60,7 @@ This's a academic project to analysis of crowd in simple videos and projection o
 
 * [Java](https://www.java.com/pt_BR/) - The base language
 * [OpenGL](https://www.opengl.org/) - The graphic language
-* [GLEW](http://glew.sourceforge.net/) - Support framework
-* [GLFW](http://www.glfw.org/) - Support framework
+* [JOGL](https://jogamp.org/jogl/www/) - Support framework
 
 
 <!-- ## Versioning -->
@@ -70,16 +69,10 @@ This's a academic project to analysis of crowd in simple videos and projection o
 ## Authors
 
 * **Wagner Santos** - *Initial work* - [oswagner](https://github.com/oswagner)
-* **André Plass** - *Initial work* ] -[pixelsir](https://github.com/pixelsir)
+* **André Plass** - *Initial work*  -[pixelsir](https://github.com/pixelsir)
 
 See also the list of [contributors](https://github.com/oswagner/crowd-analysis/contributors) who participated in this project.
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/oswagner/crowd-analysis/blob/master/LICENSE) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
