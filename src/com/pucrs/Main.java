@@ -13,11 +13,12 @@ public class Main {
         p.print();
 
         // analyze file
-//        Analyzer a = new Analyzer(p.getDataPackage());
+        Analyzer a = new Analyzer(p.getDataPackage());
 //        a.findPairs();
+        a.findPeopleCrossingsPaths();
 
         // create view
-        new View(p.getDataPackage());
+//        new View(p.getDataPackage());
 
 
     }
