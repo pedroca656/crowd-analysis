@@ -4,7 +4,9 @@ import com.pucrs.parsing.DataPackage;
 import com.pucrs.parsing.Person;
 import com.pucrs.analysis.Line;
 
+import java.awt.geom.Line2D;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static java.lang.Math.pow;
@@ -92,7 +94,7 @@ public class Analyzer {
     public void findPeopleCrossingsPaths() {
         // se duas linhas se cruzarem = evento
 
-         ArrayList<Line> allLines = new ArrayList<Line>();
+        ArrayList<Line> allLines = new ArrayList<Line>();
 
 
         // all frames
@@ -111,8 +113,8 @@ public class Analyzer {
                             SegmentLine segment =  new SegmentLine(start, end);
                             personLine.addPiece(segment);
                         }
-                        allLines.add(personLine);
                     }
+                    allLines.add(personLine);
                 }
             }
         }
@@ -137,6 +139,33 @@ public class Analyzer {
         Float term2 = y2 - y1;
         double expression = (pow(term1, 2) + pow(term2, 2));
         return round(sqrt(expression));
+    }
+
+
+    private boolean intersect(SegmentLine line1, SegmentLine line2) {
+        double denominator = (line1.getStart().getX() - line1.getEnd().getX()) * (line2.getStart().getY() - line2.getEnd().getY())
+                - (line1.getStart().getY() - line1.getEnd().getY()) * (line2.getStart().getX() - line2.getEnd().getX());
+        double px = 0;
+        double py = 0;
+
+        if (denominator == 0) {
+            System.out.println("Parallels");
+            return  false;
+        } else {
+
+            px = ((line1.getStart().getX() * line1.getEnd().getY() - line1.getStart().getY() * line1.getEnd().getX())
+                    * (line2.getStart().getX() - line2.getEnd().getX()) - (line1.getStart().getX() - line1.getEnd().getX())
+                    * (line2.getStart().getX() * line2.getEnd().getY() - line2.getStart().getY() * line2.getEnd().getX()))
+                    / denominator;
+
+            py = ((line1.getStart().getX() * line1.getEnd().getY() - line1.getStart().getY() * line1.getEnd().getX())
+                    * (line2.getStart().getY() - line2.getEnd().getY()) - (line1.getStart().getY() - line1.getEnd().getY())
+                    * (line2.getStart().getX() * line2.getEnd().getY() - line2.getStart().getY() * line2.getEnd().getX()))
+                    / denominator;
+
+            System.out.println(px + "," + py);
+            return true;
+        }
     }
 
     // prints pairs detected by frame
