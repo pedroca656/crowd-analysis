@@ -103,13 +103,13 @@ public class Analyzer {
                 // people
                 for (int i = 0; i < dataMatrix.size() ; i++) {
                     Line personLine = new Line(new ArrayList<SegmentLine>());
-                    Person currentPerson = dataMatrix.get(i).get(frame);
-                    Person nextPerson = dataMatrix.get(i).get(nextFrame);
+                    Person currentPersonCurrentFrame = dataMatrix.get(i).get(frame);
+                    Person currentPersonNextFrame = dataMatrix.get(i).get(nextFrame);
 
-                    if (currentPerson != null && nextPerson != null ){
-                        if (currentPerson.getX() != nextPerson.getX() || currentPerson.getY() != nextPerson.getY()) {
-                            Point start = new Point(currentPerson.getX(), currentPerson.getY());
-                            Point end = new Point(nextPerson.getX(), nextPerson.getY());
+                    if (currentPersonCurrentFrame != null && currentPersonNextFrame != null ){
+                        if (currentPersonCurrentFrame.getX() != currentPersonNextFrame.getX() || currentPersonCurrentFrame.getY() != currentPersonNextFrame.getY()) {
+                            Point start = new Point(currentPersonCurrentFrame.getX(), currentPersonCurrentFrame.getY());
+                            Point end = new Point(currentPersonNextFrame.getX(), currentPersonNextFrame.getY());
                             SegmentLine segment =  new SegmentLine(start, end);
                             personLine.addPiece(segment);
                         }
