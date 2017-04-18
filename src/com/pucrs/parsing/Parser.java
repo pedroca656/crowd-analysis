@@ -12,9 +12,14 @@ public class Parser {
     private final String paths_d_3 = "res/Paths_D (3).txt";
     private final String paths_d_4 = "res/Paths_D (4).txt";
 
+    private final String germany = "res/germany_1.txt";
+    private final String portugal = "res/portugal.txt";
+    private final String spain = "res/spain.txt";
+    private final String turkey = "res/turkey.txt";
+
     private List<Person> dataMatrix = new ArrayList<Person>();
 
-    private final File file = new File(paths_d_4);
+    private final File file = new File(spain);
 
     private Integer maxWidth = 0;
     private Integer maxHeight = 0;

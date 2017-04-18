@@ -10,7 +10,7 @@ public class Main {
         // parse file
         Parser p = new Parser();
         p.parseFile();
-//        p.print();
+        p.print();
 
         // analyze file
         Analyzer a = new Analyzer(p.getDataPackage());

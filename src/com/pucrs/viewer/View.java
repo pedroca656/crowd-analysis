@@ -51,7 +51,7 @@ public class View extends JFrame implements GLEventListener {
 
     @Override
     public void init(GLAutoDrawable glAutoDrawable) {
-
+        
     }
 
     @Override
@@ -77,7 +77,7 @@ public class View extends JFrame implements GLEventListener {
 
         gl.glMatrixMode(gl.GL_PROJECTION);
         gl.glLoadIdentity();
-        gl.glOrtho(0.0f, maxWidth+75, maxHeight+75, 0.0f, 0.0f, 1.0f);
+        gl.glOrtho(0.0f, maxWidth+75, maxHeight+75, 0.0f, 0.0f, 2.0f);
         gl.glClearColor(0.392f, 0.584f, 0.929f, 1.0f);
 
         float offset = 2.5f;
@@ -93,7 +93,7 @@ public class View extends JFrame implements GLEventListener {
             xCoordsList = dataMatrix.get(i).getxCoords();
             yCoordsList = dataMatrix.get(i).getyCoords();
             for (int j = 0; j < totalFrames; j++) {
-                if (xCoordsList.get(j) != null) {
+                if (xCoordsList.get(j) != null && (i == 16)  ) {
                     // set color
                     gl.glColor3f(colorList.get(i).get(0), colorList.get(i).get(1), colorList.get(i).get(2));
 
