@@ -51,7 +51,7 @@ public class View extends JFrame implements GLEventListener {
 
     @Override
     public void init(GLAutoDrawable glAutoDrawable) {
-        
+
     }
 
     @Override

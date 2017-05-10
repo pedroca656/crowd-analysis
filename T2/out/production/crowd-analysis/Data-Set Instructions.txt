@@ -1,0 +1,42 @@
+Cultural Crowds Dataset keeps video clips from different countries, where each root directory contains video sequences from a specific country.
+It was organized this way to allow us to investigate cultural aspects.
+
+Each video directory (inside a country directory) keeps the following files:
+
+INPUT FILES:
+
+* Frames
+Contains all frames of the video sequence in image format .JPG (000000.jpg).
+
+* Paths_N.txt
+Contains all trajectories for the people from that video, in IMAGE coordinates.
+
+* Paths_D.txt
+Contains all trajectories for the people from that video, in WORLD coordinates.
+
+* imageList.txt
+Contains a simple list of all the names of frames to be processed for that video.
+
+
+OUTPUT FILES:
+
+* GROUPS_DATA.txt
+Contains data about each group found by our method, such as: id of people, distances between agents, speed, angular variation, area, collectivity, disturbance and cohesion.
+
+* GROUPS_INFO.txt
+Contains data about people across frames. The values are:
+Frame_number amount_of_people amount_of_people_alone amount_of_people_grouped number_of_groups average_of_people_by_group
+
+
+================================= * =================================
+
+If you happen to use the Cultural Crowds dataset, please refer to the following paper:
+
+FAVARETTO, R.; DIHL, L. ; BARRETO, R. ; MUSSE, S. R. Using Group Behaviors To Detect Hofstede Cultural Dimensions. IEEE International Conference on Image Processing (ICIP), 2016.
+
+@INPROCEEDINGS{favaretto:2016, 
+	author={Rodolfo Favaretto and Leandro Dihl and Rodrigo Barreto and Soraia Raupp Musse}, 
+	booktitle={IEEE International Conference on Image Processing (ICIP)}, 
+	title={Using Group Behaviors To Detect Hofstede Cultural Dimensions}, 
+	year={2016}
+}
