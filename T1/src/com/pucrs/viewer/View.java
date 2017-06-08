@@ -93,7 +93,7 @@ public class View extends JFrame implements GLEventListener {
             xCoordsList = dataMatrix.get(i).getxCoords();
             yCoordsList = dataMatrix.get(i).getyCoords();
             for (int j = 0; j < totalFrames; j++) {
-                if (xCoordsList.get(j) != null && (i == 16)  ) {
+                if (xCoordsList.get(j) != null) {
                     // set color
                     gl.glColor3f(colorList.get(i).get(0), colorList.get(i).get(1), colorList.get(i).get(2));
 
