@@ -19,7 +19,7 @@ public class Parser {
 
     private List<Person> dataMatrix = new ArrayList<Person>();
 
-    private final File file = new File(spain);
+    private final File file = new File(paths_d_1);
 
     private Integer maxWidth = 0;
     private Integer maxHeight = 0;
