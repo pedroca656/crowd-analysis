@@ -17,45 +17,29 @@ public class Parser {
     private final String spain = "res/spain.txt";
     private final String turkey = "res/turkey.txt";
 
-    private List<Person> dataMatrix = new ArrayList<Person>();
+    public static List<Person> parsedData = new ArrayList<Person>();
+
+    public static List<Coords> coordsList;
 
     private final File file = new File(paths_d_1);
 
-    private Integer maxWidth = 0;
-    private Integer maxHeight = 0;
+    public static Integer maxWidth = 0;
+    public static Integer maxHeight = 0;
 
-    private int totalFrames = 0;
-
-    public Parser() {}
+    public Parser() {
+        parsedData = new ArrayList<Person>();
+    }
 
     public void parseFile() {
         // matcher
-        Pattern pindex = Pattern.compile("\\d*\\t");    // number of coordinates per person
         Pattern px = Pattern.compile("\\(\\d*");        // x coordinates
         Pattern py = Pattern.compile(",\\d*,");         // y coordinates
-        Pattern pframe = Pattern.compile("\\d*\\)");    // frame
+
+        Matcher m;
 
         String str;
 
-        int size = 0;
-        int firstFrame = 0;
         int personNumber = 0;
-
-        // first read: get total number of frames
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            while ((str = br.readLine()) != null) {
-                // apply frame matcher
-                Matcher m = pframe.matcher(str);
-                while (m.find()) {
-                    if (totalFrames < Integer.parseInt(m.group().substring(0, m.group().length() - 1))) {
-                        totalFrames = Integer.parseInt(m.group().substring(0, m.group().length() - 1));
-                    }
-                }
-            }
-            br.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
         // second read: build matrix
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
@@ -66,25 +50,9 @@ public class Parser {
             while ((str = br.readLine()) != null) {
                 personNumber++;
 
-                // get amount of coordinates per person
-                Matcher m = pindex.matcher(str);
-                if (m.find()) {
-                    size = Integer.parseInt(m.group().substring(0, (m.group().length() - 1)));
-                }
-
-                // get first frame number matcher
-                m = pframe.matcher(str);
-                if (m.find()) {
-                    firstFrame = Integer.parseInt(m.group(0).substring(0, m.group().length() - 1)) - 1;
-                }
-
                 // create lists
                 List<Float> x = new ArrayList<Float>();
                 List<Float> y = new ArrayList<Float>();
-                for (int i = 0; i < (firstFrame); i++) {
-                    x.add(null);
-                    y.add(null);
-                }
 
                 // apply x matcher
                 m = px.matcher(str);
@@ -104,12 +72,14 @@ public class Parser {
                     }
                 }
 
-                for (int i = 0; i < (totalFrames - firstFrame - size); i++) {
-                    x.add(null);
-                    y.add(null);
+                // prepare coordsList
+                for (int i = 0; i < x.size(); i++) {
+                    coordsList.add(new Coords(x.get(i), y.get(i))));
                 }
-                // add Person to matrix
-                dataMatrix.add(new Person(x, y, personNumber));
+
+                // create Person and add it to parsedData
+                parsedData.add(new Person(coordsList, personNumber);
+
             }
             br.close();
         } catch (IOException e) {
@@ -119,24 +89,11 @@ public class Parser {
 
     public void print() {
         System.out.println("print()>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-        System.out.println("|--number of people in set: " + dataMatrix.size());
-        System.out.println("|--total number of frames: " + totalFrames);
+        System.out.println("|--number of people in set: " + parsedData.size());
         System.out.println("|--maxWidth: " + maxWidth);
         System.out.println("|--maxHeight: " + maxHeight);
-        for (int i=0; i < dataMatrix.size(); i++) {
-            System.out.println("\n|--Person "  + i + ":  ");
-            for (int j=0; j < totalFrames; j++) {
-                if (dataMatrix.get(i).getxCoords().get(j) != null) {
-                    System.out.println("| frame " + j + ": (" + dataMatrix.get(i).getxCoords().get(j) + "," + dataMatrix.get(i).getyCoords().get(j) + ") ");
-                } else {
-                    System.out.println("| frame " + j + ": (null, null)");
-                }
-            }
+        for (int i = 0; i < parsedData.size(); i++) {
         }
         System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-    }
-
-    public DataPackage getDataPackage() {
-        return new DataPackage(dataMatrix, maxWidth, maxHeight, totalFrames);
     }
 }
