@@ -1,14 +1,12 @@
 package com.pucrs.parsing;
 
-import com.pucrs.analysis.Relation;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Person {
     private List<Coords> coordsList;
 
-    private List<Relation> relations;
+    //private List<Relation> relations;
 
     private Coords currentCoord;
 
@@ -20,6 +18,7 @@ public class Person {
 
     public Person(List<Coords> coordsList, Integer id) {
         nextCoordIndex = 0;
+        currentCoord = coordsList.get(0);
         reverseRoute = false;
         this.coordsList = coordsList;
         this.id = id;
@@ -62,11 +61,7 @@ public class Person {
         return id;
     }
 
-    // TODO atualizar to string;
-    @Override
     public String toString() {
-        return "Person[" +
-                "id=" + id +
-                ']';
+        return "Person " + id + ": " + coordsList;
     }
 }
