@@ -11,9 +11,10 @@
 //import java.awt.event.*;
 //
 //import javax.swing.*;
+//import java.awt.event.MouseListener;
 //import java.util.List;
 //
-//public class View extends JFrame implements GLEventListener, com.jogamp.newt.event.MouseListener {
+//public class View extends JFrame implements GLEventListener, MouseListener {
 //    private List<Person> personList;
 //
 //    private GL2 gl;

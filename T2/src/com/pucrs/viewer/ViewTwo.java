@@ -6,10 +6,16 @@ import com.jogamp.opengl.glu.GLU;
 import com.jogamp.opengl.util.gl2.GLUT;
 
 import com.jogamp.opengl.*;
+import com.pucrs.parsing.Parser;
+import com.pucrs.parsing.Person;
 
 import javax.swing.*;
+import javax.swing.Timer;
 import java.awt.*;
 import java.awt.event.*;
+
+import java.util.*;
+import java.util.List;
 
 /**
  * A template for a basic JOGL application with support for animation and for
@@ -19,12 +25,16 @@ import java.awt.event.*;
  */
 public class ViewTwo extends JPanel implements
         GLEventListener, KeyListener, MouseListener, MouseMotionListener, ActionListener {
+    private List<Person> personList;
 
-    private Float rotX = 0f, rotY = 0f, rotX_ini, rotY_ini;
-    private Float obsX = 0f, obsY = 0f, obsZ = 200f, obsX_ini, obsY_ini, obsZ_ini;
+    private Float rotX = 90f, rotY = 90f, rotX_ini, rotY_ini;
+    private Float obsX = 0f, obsY = 0f, obsZ = 400f, obsX_ini, obsY_ini, obsZ_ini;
     private Float fAspect = 1f, angle = 44f;
     int x_ini, y_ini;
 
+    private Camera camera;
+
+    private static final Float SCALER = 5f;
     private static final Float SENS_ROT = 5f;
     private static final Float SENS_OBS = 10f;
     private static final Float SENS_TRANSL = 30f;
@@ -35,23 +45,24 @@ public class ViewTwo extends JPanel implements
     private Timer animationTimer;
     private float rotateX, rotateY;   // rotation amounts about axes, controlled by keyboard
 
-    public static void main(String[] args) {
+    public ViewTwo() {
         JFrame window = new JFrame("JOGL");
-        window.setContentPane(new ViewTwo());
+        window.setContentPane(this);
         window.pack();
         window.setLocation(50, 50);
+        window.setSize(1000, 1000);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setVisible(true);
 
-    }
-
-    public ViewTwo() {
         GLCapabilities caps = new GLCapabilities(null);
         display = new GLJPanel(caps);
-        display.setPreferredSize(new Dimension(600, 600));  // TODO: set display size here
+        display.setPreferredSize(new Dimension(1000, 1000));  // TODO: set display size here
         display.addGLEventListener(this);
         setLayout(new BorderLayout());
         add(display, BorderLayout.CENTER);
+
+        personList = Parser.personList;
+
         // TODO:  Other components could be added to the main panel.
 
         rotateX = 15;  // initialize some variables used in the drawing.
@@ -82,6 +93,10 @@ public class ViewTwo extends JPanel implements
 
         GL2 gl = drawable.getGL().getGL2();
         this.gl = gl;
+
+        camera = new Camera();
+        camera.apply(gl);
+
         gl.glClearColor(0, 0, 0, 0);
         gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
@@ -100,7 +115,7 @@ public class ViewTwo extends JPanel implements
         gl.glColor3f(0.0f, 0.0f, 1.0f);
 
         gl.glPushMatrix();
-        gl.glTranslatef(0,28,0);
+        gl.glTranslatef(0, 28, 0);
 
         glut.glutWireTeapot(35);
 
@@ -108,8 +123,26 @@ public class ViewTwo extends JPanel implements
 
         desenhaChao();
 
+        desenhaPessoas();
+
         gl.glFlush();
 
+    }
+
+    private void desenhaPessoas() {
+        for (int j = 0; j < 100; j++) {
+            //gl.glPushMatrix();
+            gl.glColor3f(255, 255, 255);
+            for (int i = 0; i < personList.size() - 1; i++) {
+                gl.glBegin(gl.GL_LINES);
+                //gl.glVertex3f(personList.get(i).getNextCoord().getX(), 0.0f, personList.get(i).getNextCoord().getY());
+                gl.glVertex3f(20,0,20);
+                gl.glVertex3f(0, 0, -20);
+                gl.glVertex3f(-20, 0, 20);
+                gl.glEnd();
+            }
+            //gl.glPopMatrix();
+        }
     }
 
     /**
@@ -214,18 +247,8 @@ public class ViewTwo extends JPanel implements
     /**
      * Called when the user presses a mouse button on the display.
      */
-    public void mousePressed(MouseEvent evt) {
-        if (dragging) {
-            return;  // don't start a new drag while one is already in progress
-        }
-        int x = evt.getX();
-        int y = evt.getY();
-        // TODO: respond to mouse click at (x,y)
-        dragging = true;  // might not always be correct!
-        prevX = startX = x;
-        prevY = startY = y;
-        display.repaint();    //  only needed if display should change
-        System.out.println("mousePressed ended");
+    public void mousePressed(MouseEvent e) {
+
     }
 
     /**
@@ -242,24 +265,56 @@ public class ViewTwo extends JPanel implements
     /**
      * Called during a drag operation when the user drags the mouse on the display/
      */
-    public void mouseDragged(MouseEvent evt) {
-        if (!dragging) {
-            return;
-        }
-        int x = evt.getX();
-        int y = evt.getY();
-        // TODO:  respond to mouse drag to new point (x,y)
-        prevX = x;
-        prevY = y;
-        display.repaint();
-        System.out.println("mouseDragged ended");
+    public void mouseDragged(MouseEvent e) {
+//        System.out.println("x_ini: " + x_ini + ", y_ini: " + y_ini);
+////        System.out.println("getX: " + e.getX() + ", getY: " + e.getY());
+////
+////        System.out.println("obsX_ini: " + obsX_ini + ", obsY_ini; " + obsY_ini + ", obsZ_ini: " + obsZ_ini);
+////        System.out.println("obsX: " + obsX + ", obsY; " + obsY + ", obsZ: " + obsZ);
+////
+////        System.out.println("rotX_ini: " + rotX_ini + ", rotY_ini; " + rotY_ini);
+////        System.out.println("rotX: " + rotX + ", rotY; " + rotY);
+//
+//        x_ini = 0;
+//        y_ini = 0;
+//
+//        obsX_ini = obsX;
+//        obsY_ini = obsY;
+//        obsZ_ini = obsZ;
+//
+//        rotX_ini = rotX;
+//        rotY_ini = rotY;
+//
+//        int x = e.getX();
+//        int y = e.getY();
+//        //if (e.getButton() == MouseEvent.BUTTON1) {
+//            int deltax = x_ini - x;
+//            int deltay = y_ini - y;
+//
+//            rotY = rotY_ini - deltax / SENS_ROT;
+//            rotX = rotX_ini - deltay / SENS_ROT;
+//        //}
+////        if (e.getButton() == MouseEvent.BUTTON2) {
+////            int deltaz = y_ini - y;
+////            obsZ = obsZ_ini + deltaz / SENS_OBS;
+////        }
+////        if (e.getButton() == MouseEvent.BUTTON3) {
+////            int deltax = x_ini - x;
+////            int deltay = y_ini - y;
+////
+////            obsX = obsX_ini + deltax / SENS_TRANSL;
+////            obsY = obsY_ini - deltay / SENS_TRANSL;
+////        }
+//        posicionaObservador();
+//
+//        display.repaint();
     }
 
-    public void mouseMoved(MouseEvent evt) {
+    public void mouseMoved(MouseEvent e) {
+
     }
 
-    public void mouseClicked(MouseEvent evt) {
-        System.out.println("clicked!");
+    public void mouseClicked(MouseEvent e) {
     }
 
     public void mouseEntered(MouseEvent evt) {
@@ -269,13 +324,14 @@ public class ViewTwo extends JPanel implements
     }
 
 
-    void PosicionaObservador() {
+    void posicionaObservador() {
+        //System.out.println("obsX: " + obsX + ", obsY; " + obsY + ", obsZ: " + obsZ);
         gl.glMatrixMode(gl.GL_MODELVIEW);
         gl.glLoadIdentity();
         gl.glTranslatef(-obsX, -obsY, -obsZ);
         gl.glRotatef(rotX, 1, 0, 0);
         gl.glRotatef(rotY, 0, 1, 0);
-        glu.gluLookAt(0.0, 80.0, 200.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+        camera.lookAt(obsX, obsY, obsZ, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
     }
 
     void desenhaChao() {
@@ -297,8 +353,8 @@ public class ViewTwo extends JPanel implements
     void EspecificaParametrosVisualizacao() {
         gl.glMatrixMode(gl.GL_PROJECTION);
         gl.glLoadIdentity();
-        glu.gluPerspective(angle,fAspect,0.5,500);
-        PosicionaObservador();
+        glu.gluPerspective(angle, fAspect, 0.5, 500);
+        posicionaObservador();
     }
 
 }
