@@ -315,6 +315,7 @@ public class ViewTwo extends JPanel implements
     }
 
     public void mouseClicked(MouseEvent e) {
+        rotX = 75f;
     }
 
     public void mouseEntered(MouseEvent evt) {
