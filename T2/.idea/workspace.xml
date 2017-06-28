@@ -29,8 +29,8 @@
       <file leaf-file-name="ViewTwo.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/pucrs/viewer/ViewTwo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="354" column="8" lean-forward="false" selection-start-line="354" selection-start-column="8" selection-end-line="354" selection-end-column="8" />
+            <state relative-caret-position="4913">
+              <caret line="304" column="0" lean-forward="true" selection-start-line="304" selection-start-column="0" selection-end-line="304" selection-end-column="0" />
               <folding>
                 <element signature="e#6860#6861#0" expanded="true" />
                 <element signature="e#6931#6932#0" expanded="true" />
@@ -68,10 +68,10 @@
       <find>size</find>
       <find>window</find>
       <find>desenhaPessoas</find>
-      <find>frame</find>
       <find>wir</find>
       <find>teapot</find>
       <find>look</find>
+      <find>frame</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -707,12 +707,12 @@
       <workItem from="1498510466798" duration="5561000" />
       <workItem from="1498521290343" duration="1646000" />
       <workItem from="1498526698381" duration="118000" />
-      <workItem from="1498607420587" duration="10560000" />
+      <workItem from="1498607420587" duration="11970000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18186000" />
+    <option name="totallyTimeSpent" value="19596000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -766,14 +766,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/pucrs/viewer/View.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2805">
-          <caret line="95" column="46" lean-forward="false" selection-start-line="95" selection-start-column="46" selection-end-line="95" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pucrs/parsing/Person.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="924">
@@ -1132,10 +1124,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$PROJECT_DIR$/jars/jogl-all.jar!/com/jogamp/opengl/GL2.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="1612" column="9" lean-forward="false" selection-start-line="1612" selection-start-column="9" selection-end-line="1612" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pucrs/viewer/ViewTwo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="354" column="8" lean-forward="false" selection-start-line="354" selection-start-column="8" selection-end-line="354" selection-end-column="8" />
+        <state relative-caret-position="4913">
+          <caret line="304" column="0" lean-forward="true" selection-start-line="304" selection-start-column="0" selection-end-line="304" selection-end-column="0" />
           <folding>
             <element signature="e#6860#6861#0" expanded="true" />
             <element signature="e#6931#6932#0" expanded="true" />

@@ -302,48 +302,7 @@ public class ViewTwo extends JPanel implements
      * Called during a drag operation when the user drags the mouse on the display/
      */
     public void mouseDragged(MouseEvent e) {
-//        System.out.println("x_ini: " + x_ini + ", y_ini: " + y_ini);
-////        System.out.println("getX: " + e.getX() + ", getY: " + e.getY());
-////
-////        System.out.println("obsX_ini: " + obsX_ini + ", obsY_ini; " + obsY_ini + ", obsZ_ini: " + obsZ_ini);
-////        System.out.println("obsX: " + obsX + ", obsY; " + obsY + ", obsZ: " + obsZ);
-////
-////        System.out.println("rotX_ini: " + rotX_ini + ", rotY_ini; " + rotY_ini);
-////        System.out.println("rotX: " + rotX + ", rotY; " + rotY);
-//
-//        x_ini = 0;
-//        y_ini = 0;
-//
-//        obsX_ini = obsX;
-//        obsY_ini = obsY;
-//        obsZ_ini = obsZ;
-//
-//        rotX_ini = rotX;
-//        rotY_ini = rotY;
-//
-//        int x = e.getX();
-//        int y = e.getY();
-//        //if (e.getButton() == MouseEvent.BUTTON1) {
-//            int deltax = x_ini - x;
-//            int deltay = y_ini - y;
-//
-//            rotY = rotY_ini - deltax / SENS_ROT;
-//            rotX = rotX_ini - deltay / SENS_ROT;
-//        //}
-////        if (e.getButton() == MouseEvent.BUTTON2) {
-////            int deltaz = y_ini - y;
-////            obsZ = obsZ_ini + deltaz / SENS_OBS;
-////        }
-////        if (e.getButton() == MouseEvent.BUTTON3) {
-////            int deltax = x_ini - x;
-////            int deltay = y_ini - y;
-////
-////            obsX = obsX_ini + deltax / SENS_TRANSL;
-////            obsY = obsY_ini - deltay / SENS_TRANSL;
-////        }
-//        posicionaObservador();
-//
-//        display.repaint();
+
     }
 
 
@@ -352,7 +311,7 @@ public class ViewTwo extends JPanel implements
     }
 
     public void mouseClicked(MouseEvent e) {
-        
+
     }
 
     public void mouseEntered(MouseEvent evt) {
@@ -373,16 +332,14 @@ public class ViewTwo extends JPanel implements
     }
 
     void desenhaChao() {
-        gl.glColor3f(1, 0, 1);
-        gl.glLineWidth(3);
+        gl.glColor3f(2, 2, 1);
+        gl.glLineWidth(10f);
         gl.glBegin(gl.GL_LINES);
         for (float z = 0; z <= 2000; z += 10) {
             gl.glVertex3f(0000, -0.1f, z);
             gl.glVertex3f(2000, -0.1f, z);
         }
         for (float x = 0; x <= 2000; x += 10) {
-            //gl.glVertex3f(x, -0.1f, -1000);
-            //gl.glVertex3f(x, -0.1f, 1000);
             gl.glVertex3f(x, -0.1f, 0000);
             gl.glVertex3f(x, -0.1f, 2000);
         }
