@@ -69,8 +69,8 @@ public class ViewTwo extends JPanel implements
         rotateY = 15;
 
         // TODO:  Uncomment the next two lines to enable keyboard event handling
-        //requestFocusInWindow();
-        //addKeyListener(this);
+        requestFocusInWindow();
+        addKeyListener(this);
 
         // TODO:  Uncomment the next one or two lines to enable mouse event handling
         display.addMouseListener(this);
@@ -248,7 +248,7 @@ public class ViewTwo extends JPanel implements
      * Called when the user presses a mouse button on the display.
      */
     public void mousePressed(MouseEvent e) {
-
+        //obsX = 75f;
     }
 
     /**
@@ -256,6 +256,7 @@ public class ViewTwo extends JPanel implements
      */
     public void mouseReleased(MouseEvent evt) {
         if (!dragging) {
+            //obsX = 90f;
             return;
         }
         dragging = false;
