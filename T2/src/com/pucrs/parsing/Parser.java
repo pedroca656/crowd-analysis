@@ -12,14 +12,7 @@ import java.util.regex.Pattern;
 
 public class Parser {
     private final String paths_d_1 = "res/Paths_D (1).txt";
-    private final String paths_d_2 = "res/Paths_D (2).txt";
-    private final String paths_d_3 = "res/Paths_D (3).txt";
-    private final String paths_d_4 = "res/Paths_D (4).txt";
 
-    private final String germany = "res/germany_1.txt";
-    private final String portugal = "res/portugal.txt";
-    private final String spain = "res/spain.txt";
-    private final String turkey = "res/turkey.txt";
 
     public static List<Person> personList;
 

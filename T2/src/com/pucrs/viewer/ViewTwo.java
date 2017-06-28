@@ -111,7 +111,7 @@ public class ViewTwo extends JPanel implements
         gl.glRotatef(rotateX, 1, 0, 0);
 
         // TODO: add drawing code!!
-        EspecificaParametrosVisualizacao();
+        visualization();
 
         gl.glColor3f(255f, 0.0f, 0.0f);
 
@@ -123,29 +123,29 @@ public class ViewTwo extends JPanel implements
 
         gl.glPopMatrix();
 
-        desenhaChao();
+        drawFloor();
 
-        desenhaPessoas(0);
+        carregaPessoas();
 
         gl.glFlush();
 
     }
 
-    private void desenhaPessoas(int frame) {
-        for (int j = 0; j < 100; j++) {
+    private void carregaPessoas() {
+        //for (int j = 0; j < 100; j++) {
             gl.glColor3f(0f, 0f, 255f);
             for (int i = 0; i < personList.size() - 1; i++) {
-
                 gl.glPushMatrix();
-                gl.glTranslatef(personList.get(i).getCoordsList().get(frame).getX(), 5f, personList.get(i).getCoordsList().get(frame).getY());
+                gl.glTranslatef(personList.get(i).getCoordsList().get(0).getX(), 5f, personList.get(i).getCoordsList().get(0).getY());
 
-                glut.glutSolidCube(10);
+                if(i > (personList.size() - 1) / 3 ) glut.glutSolidCube(10);
+                else glut.glutSolidSphere(10, 1, 1);
 
                 gl.glPopMatrix();
 
 
             }
-        }
+        //}
     }
 
     /**
@@ -190,8 +190,16 @@ public class ViewTwo extends JPanel implements
                 onlyCamera = false;
                 obsX = posy;
                 obsY = posx;
+                obsZ = 400f;
+                startAnimation();
             }
-            else onlyCamera = true;
+            else {
+                onlyCamera = true;
+                pauseAnimation();
+            }
+        }
+        if(key == KeyEvent.VK_MINUS && onlyCamera){
+            obsZ += 100f;
         }
         if (key == KeyEvent.VK_LEFT) {
             obsX -= 15f;
@@ -321,7 +329,7 @@ public class ViewTwo extends JPanel implements
     }
 
 
-    void posicionaObservador() {
+    private void setCamera() {
         //System.out.println("obsX: " + obsX + ", obsY; " + obsY + ", obsZ: " + obsZ);
         gl.glMatrixMode(gl.GL_MODELVIEW);
         gl.glLoadIdentity();
@@ -331,8 +339,8 @@ public class ViewTwo extends JPanel implements
         camera.lookAt(obsX, obsY, obsZ, posx, posy, posz, 0.0, 1.0, 0.0);
     }
 
-    void desenhaChao() {
-        gl.glColor3f(2, 2, 1);
+    private void drawFloor() {
+        gl.glColor3f(0, 0, 1);
         gl.glLineWidth(10f);
         gl.glBegin(gl.GL_LINES);
         for (float z = 0; z <= 2000; z += 10) {
@@ -347,11 +355,11 @@ public class ViewTwo extends JPanel implements
         gl.glLineWidth(1);
     }
 
-    void EspecificaParametrosVisualizacao() {
+    private void visualization() {
         gl.glMatrixMode(gl.GL_PROJECTION);
         gl.glLoadIdentity();
         glu.gluPerspective(angle, fAspect, 0.5, 500);
-        posicionaObservador();
+        setCamera();
     }
 
 }

@@ -1,6 +1,5 @@
 package com.pucrs;
 
-import com.pucrs.controller.Controller;
 import com.pucrs.parsing.Parser;
 import com.pucrs.viewer.ViewTwo;
 
