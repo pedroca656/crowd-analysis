@@ -1,7 +1,0 @@
-- fazer um scaler para as coordenadas x,y de todas as pessoas
-  para que caibam no viewport
-- modelar uma pessoa (um cubo, um cilindro, uma estrela...)
-- modelar uma bomba
-- adicionar evento para 'dropar' a bomba (mouse event)
-- iniciar algoritmo de fuga da bomba das pessoas
-- se sobrar tempo fazer algoritmo de colisao

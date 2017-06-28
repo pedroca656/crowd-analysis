@@ -5,8 +5,6 @@ import java.util.List;
 public class Pessoa {
     private List<Cordenadas> cordenadasList;
 
-    //private List<Relation> relations;
-
     private Cordenadas currentCoord;
 
     private Integer nextCoordIndex;

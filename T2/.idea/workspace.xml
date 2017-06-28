@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="86c1deac-61a5-4950-bd65-0078d4328fce" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/pucrs/controller/Bomb.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/pucrs/controller/Controller.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/pucrs/parsing/DataPackage.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/pucrs/parsing/Coords.java" afterPath="$PROJECT_DIR$/src/com/pucrs/parsing/Cordenadas.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/pucrs/parsing/Person.java" afterPath="$PROJECT_DIR$/src/com/pucrs/parsing/Pessoa.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/pucrs/viewer/ViewTwo.java" afterPath="$PROJECT_DIR$/src/com/pucrs/viewer/Jogo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/pucrs/Main.java" afterPath="$PROJECT_DIR$/src/com/pucrs/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/pucrs/analysis/Analyzer.java" afterPath="$PROJECT_DIR$/src/com/pucrs/analysis/Analyzer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/pucrs/analysis/Relation.java" afterPath="$PROJECT_DIR$/src/com/pucrs/analysis/Relation.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/pucrs/parsing/Parser.java" afterPath="$PROJECT_DIR$/src/com/pucrs/parsing/Parser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/pucrs/parsing/Pessoa.java" afterPath="$PROJECT_DIR$/src/com/pucrs/parsing/Pessoa.java" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -36,11 +26,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Cordenadas.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/pucrs/parsing/Cordenadas.java">
+      <file leaf-file-name="Pessoa.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/pucrs/parsing/Pessoa.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+            <state relative-caret-position="85">
+              <caret line="5" column="23" lean-forward="false" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -94,6 +84,7 @@
         <option value="$PROJECT_DIR$/src/com/pucrs/viewer/ViewTwo.java" />
         <option value="$PROJECT_DIR$/src/com/pucrs/Main.java" />
         <option value="$PROJECT_DIR$/src/com/pucrs/parsing/Parser.java" />
+        <option value="$PROJECT_DIR$/src/com/pucrs/parsing/Pessoa.java" />
       </list>
     </option>
   </component>
@@ -682,12 +673,12 @@
       <workItem from="1498510466798" duration="5561000" />
       <workItem from="1498521290343" duration="1646000" />
       <workItem from="1498526698381" duration="118000" />
-      <workItem from="1498607420587" duration="16755000" />
+      <workItem from="1498607420587" duration="17151000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24381000" />
+    <option name="totallyTimeSpent" value="24777000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -966,14 +957,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pucrs/parsing/Pessoa.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="18" lean-forward="false" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/awt/event/KeyEvent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-475">
@@ -1092,16 +1075,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pucrs/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pucrs/parsing/DataPackage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -1112,8 +1085,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pucrs/parsing/Cordenadas.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+        <state relative-caret-position="34">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pucrs/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pucrs/parsing/Pessoa.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="23" lean-forward="false" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
           <folding />
         </state>
       </provider>
