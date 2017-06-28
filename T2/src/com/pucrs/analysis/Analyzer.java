@@ -1,7 +1,7 @@
 //package com.pucrs.analysis;
 //
 //import com.pucrs.parsing.DataPackage;
-//import com.pucrs.parsing.Person;
+//import com.pucrs.parsing.Pessoa;
 //import com.sun.org.apache.regexp.internal.RE;
 //
 //import java.util.ArrayList;
@@ -13,7 +13,7 @@
 //import static java.lang.Math.sqrt;
 //
 //public class Analyzer {
-//    private List<Person> dataMatrix;
+//    private List<Pessoa> dataMatrix;
 //    private int totalFrames;
 //
 //    public Analyzer(DataPackage dataPackage) {
@@ -62,7 +62,7 @@
 //
 //                            // if distance less than 1.0m -> add to list
 //                            if (distance / 100 < 1.00) {
-//                                //System.out.print("Frame " + i + "(Person " + j + ", Person " + g + ")");
+//                                //System.out.print("Frame " + i + "(Pessoa " + j + ", Pessoa " + g + ")");
 //                                //System.out.println(" -> " + distance / 100 + "m apart");
 //                                analysisMatrix.get(i).add(new Relation(dataMatrix.get(j), dataMatrix.get(g), null));
 //                            }

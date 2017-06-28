@@ -1,22 +1,22 @@
 //package com.pucrs.analysis;
 //
-//import com.pucrs.parsing.Person;
+//import com.pucrs.parsing.Pessoa;
 //
 //public class Relation {
-//    private Person first, second;
+//    private Pessoa first, second;
 //    private Float weight;
 //
-//    public Relation(Person first, Person second, Float weight) {
+//    public Relation(Pessoa first, Pessoa second, Float weight) {
 //        this.first = first;
 //        this.second = second;
 //        this.weight = weight;
 //    }
 //
-//    public Person getFirst() {
+//    public Pessoa getFirst() {
 //        return first;
 //    }
 //
-//    public Person getSecond() {
+//    public Pessoa getSecond() {
 //        return second;
 //    }
 //

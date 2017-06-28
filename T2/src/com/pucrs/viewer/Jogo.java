@@ -7,14 +7,13 @@ import com.jogamp.opengl.util.gl2.GLUT;
 
 import com.jogamp.opengl.*;
 import com.pucrs.parsing.Parser;
-import com.pucrs.parsing.Person;
+import com.pucrs.parsing.Pessoa;
 
 import javax.swing.*;
 import javax.swing.Timer;
 import java.awt.*;
 import java.awt.event.*;
 
-import java.util.*;
 import java.util.List;
 
 /**
@@ -23,9 +22,9 @@ import java.util.List;
  * appropriate lines in the init() method.  As an example, the program draws
  * the GLUT teapot.
  */
-public class ViewTwo extends JPanel implements
+public class Jogo extends JPanel implements
         GLEventListener, KeyListener, MouseListener, MouseMotionListener, ActionListener {
-    private List<Person> personList;
+    private List<Pessoa> pessoaList;
 
     private Float rotX = 90f, rotY = 90f, rotX_ini, rotY_ini;
     private Float obsX = 500f, obsY = 500f, obsZ = 400f, obsX_ini, obsY_ini, obsZ_ini;
@@ -46,7 +45,7 @@ public class ViewTwo extends JPanel implements
     private Timer animationTimer;
     private float rotateX, rotateY;   // rotation amounts about axes, controlled by keyboard
 
-    public ViewTwo() {
+    public Jogo() {
         JFrame window = new JFrame("JOGL");
         window.setContentPane(this);
         window.pack();
@@ -62,7 +61,7 @@ public class ViewTwo extends JPanel implements
         setLayout(new BorderLayout());
         add(display, BorderLayout.CENTER);
 
-        personList = Parser.personList;
+        pessoaList = Parser.pessoaList;
 
         // TODO:  Other components could be added to the main panel.
 
@@ -134,11 +133,11 @@ public class ViewTwo extends JPanel implements
     private void carregaPessoas() {
         //for (int j = 0; j < 100; j++) {
             gl.glColor3f(0f, 0f, 255f);
-            for (int i = 0; i < personList.size() - 1; i++) {
+            for (int i = 0; i < pessoaList.size() - 1; i++) {
                 gl.glPushMatrix();
-                gl.glTranslatef(personList.get(i).getCoordsList().get(0).getX(), 5f, personList.get(i).getCoordsList().get(0).getY());
+                gl.glTranslatef(pessoaList.get(i).getCordenadasList().get(0).getX(), 5f, pessoaList.get(i).getCordenadasList().get(0).getY());
 
-                if(i > (personList.size() - 1) / 3 ) glut.glutSolidCube(10);
+                if(i > (pessoaList.size() - 1) / 3 ) glut.glutSolidCube(10);
                 else glut.glutSolidSphere(10, 1, 1);
 
                 gl.glPopMatrix();

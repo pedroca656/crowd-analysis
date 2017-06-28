@@ -14,19 +14,19 @@ public class Parser {
     private final String paths_d_1 = "res/Paths_D (1).txt";
 
 
-    public static List<Person> personList;
+    public static List<Pessoa> pessoaList;
 
     private final File file = new File(paths_d_1);
 
-    public static Integer maxWidth = 0;
-    public static Integer maxHeight = 0;
+    public static Integer colunas = 0;
+    public static Integer linhas = 0;
 
     public Parser() {
-        personList = new ArrayList<>();
+        pessoaList = new ArrayList<>();
     }
 
     public void parseFile() {
-        System.out.println("\n|--start parsing -----------------------------------");
+        System.out.println("\n|## LENDO ARQUIVO ############");
 
         // define matcher patterns
         Pattern px = Pattern.compile("\\(\\d*");        // x coordinates
@@ -49,7 +49,7 @@ public class Parser {
 
             while ((str = br.readLine()) != null) {
                 // loop-long list for coords
-                List<Coords> coordsList = new ArrayList<>();
+                List<Cordenadas> cordenadasList = new ArrayList<>();
 
                 // create lists for x & y coordinates
                 List<Float> x = new ArrayList<>();
@@ -61,8 +61,8 @@ public class Parser {
                     // get x coordinates
                     x.add(new Float(Float.parseFloat((m.group().substring(1, m.group().length())))));
                     // discover max width
-                    if (maxWidth < x.get(x.size()-1)) {
-                        maxWidth = x.get(x.size()-1).intValue();
+                    if (colunas < x.get(x.size()-1)) {
+                        colunas = x.get(x.size()-1).intValue();
                     }
                 }
 
@@ -72,28 +72,28 @@ public class Parser {
                     // get y coordinates
                     y.add(new Float(Float.parseFloat(m.group().substring(1, m.group().length() - 1))));
                     // discover height
-                    if (maxHeight < y.get(y.size()-1)) {
-                        maxHeight = y.get(y.size()-1).intValue();
+                    if (linhas < y.get(y.size()-1)) {
+                        linhas = y.get(y.size()-1).intValue();
                     }
                 }
 
-                // prepare coordsList
+                // prepare cordenadasList
                 for (int i = 0; i < x.size(); i++) {
-                    Coords temp = new Coords(x.get(i), y.get(i));
+                    Cordenadas temp = new Cordenadas(x.get(i), y.get(i));
                     temp.setIdOwner(personNumber);
-                    coordsList.add(temp);
+                    cordenadasList.add(temp);
                 }
 
-                // create Person and add it to personList
-                personList.add(new Person(coordsList, personNumber));
+                // create Pessoa and add it to pessoaList
+                pessoaList.add(new Pessoa(cordenadasList, personNumber));
 
                 personNumber++;
             }
             br.close();
 
-            System.out.println("|--people discovered: " + personList.size());
-            System.out.println("|--maxWidth: " + maxWidth);
-            System.out.println("|--maxHeight: " + maxHeight);
+            System.out.println("|--total de Pessoas: " + pessoaList.size());
+            System.out.println("|--colunas: " + colunas);
+            System.out.println("|--linhas: " + linhas);
             System.out.println("|---------------------------------------------------");
 
         } catch (IOException e) {
@@ -101,12 +101,12 @@ public class Parser {
         }
     }
 
-    public static void printPersonList() {
+    public static void imprimeListaPessoas() {
 
-        System.out.println("\n|--start print ------------------------------------");
-        for (Person p : personList) {
+        System.out.println("\n|##### Imprimindo ####################");
+        for (Pessoa p : pessoaList) {
             System.out.println("| " + p.toString());
         }
-        System.out.println("----------------------------------------------------");
+        System.out.println("##########################################");
     }
 }

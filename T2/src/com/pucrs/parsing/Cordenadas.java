@@ -1,11 +1,11 @@
 package com.pucrs.parsing;
 
-public class Coords {
+public class Cordenadas {
     private Integer idOwner;
     private Float x;
     private Float y;
 
-    public Coords(Float x, Float y) {
+    public Cordenadas(Float x, Float y) {
         this.x = x;
         this.y = y;
     }
