@@ -28,9 +28,10 @@ public class ViewTwo extends JPanel implements
     private List<Person> personList;
 
     private Float rotX = 90f, rotY = 90f, rotX_ini, rotY_ini;
-    private Float obsX = 0f, obsY = 0f, obsZ = 400f, obsX_ini, obsY_ini, obsZ_ini;
+    private Float obsX = 500f, obsY = 500f, obsZ = 400f, obsX_ini, obsY_ini, obsZ_ini;
     private Float fAspect = 1f, angle = 44f;
     int x_ini, y_ini;
+    private float posx = 90f, posy = 90f, posz = 0f;
 
     private Camera camera;
 
@@ -115,31 +116,41 @@ public class ViewTwo extends JPanel implements
         gl.glColor3f(0.0f, 0.0f, 1.0f);
 
         gl.glPushMatrix();
-        gl.glTranslatef(0, 28, 0);
+        gl.glTranslatef(500f, 0f, 500f);
 
-        glut.glutWireTeapot(35);
+        glut.glutWireTeapot(10);
+        //gl.glTranslatef(posx, posy, posz);
 
         gl.glPopMatrix();
 
         desenhaChao();
 
-        desenhaPessoas();
+        desenhaPessoas(0);
 
         gl.glFlush();
 
     }
 
-    private void desenhaPessoas() {
+    private void desenhaPessoas(int frame) {
         for (int j = 0; j < 100; j++) {
             //gl.glPushMatrix();
-            gl.glColor3f(255, 255, 255);
+            gl.glColor3f(0f, 0f, 255f);
             for (int i = 0; i < personList.size() - 1; i++) {
-                gl.glBegin(gl.GL_LINES);
+                /*gl.glBegin(gl.GL_LINES);
                 //gl.glVertex3f(personList.get(i).getNextCoord().getX(), 0.0f, personList.get(i).getNextCoord().getY());
                 gl.glVertex3f(20,0,20);
                 gl.glVertex3f(0, 0, -20);
-                gl.glVertex3f(-20, 0, 20);
-                gl.glEnd();
+                gl.glVertex3f(-20, 0, 20);*/
+                //gl.glEnd();
+
+                gl.glPushMatrix();
+                gl.glTranslatef(personList.get(i).getCoordsList().get(frame).getX(), 5f, personList.get(i).getCoordsList().get(frame).getY());
+
+                glut.glutSolidCube(10);
+
+                gl.glPopMatrix();
+
+
             }
             //gl.glPopMatrix();
         }
@@ -180,17 +191,27 @@ public class ViewTwo extends JPanel implements
      */
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();  // Tells which key was pressed.
-        if (key == KeyEvent.VK_LEFT)
-            rotateY -= 15;
-        else if (key == KeyEvent.VK_RIGHT)
-            rotateY += 15;
-        else if (key == KeyEvent.VK_DOWN)
-            rotateX += 15;
-        else if (key == KeyEvent.VK_UP)
-            rotateX -= 15;
-        else if (key == KeyEvent.VK_HOME)
-            rotateX = rotateY = 0;
-        repaint();
+        if (key == KeyEvent.VK_LEFT) {
+            obsX -= 15f;
+            //posx -= 15f;
+        }
+        else if (key == KeyEvent.VK_RIGHT) {
+            obsX += 15f;
+            //posx += 15f;
+        }
+        else if (key == KeyEvent.VK_DOWN) {
+            obsY -= 15f;
+            //posy -= 15f;
+        }
+        else if (key == KeyEvent.VK_UP) {
+            obsY += 15f;
+            //posy += 15f;
+        }
+        else if (key == KeyEvent.VK_HOME) {
+            obsY = obsY_ini;
+            obsX = obsX_ini;
+        }
+        //repaint();
     }
 
     /**
@@ -211,6 +232,7 @@ public class ViewTwo extends JPanel implements
 
     private void updateFrame() {
         // TODO:  add any other updating required for the next frame.
+        //desenhaPessoas(frameNumber);
         frameNumber++;
     }
 
@@ -248,15 +270,16 @@ public class ViewTwo extends JPanel implements
      * Called when the user presses a mouse button on the display.
      */
     public void mousePressed(MouseEvent e) {
-        //obsX = 75f;
+        //pressionado = true;
     }
 
+    private boolean pressionado = false;
     /**
      * Called when the user releases a mouse button after pressing it on the display.
      */
     public void mouseReleased(MouseEvent evt) {
         if (!dragging) {
-            //obsX = 90f;
+            //pressionado = false;
             return;
         }
         dragging = false;
@@ -311,12 +334,13 @@ public class ViewTwo extends JPanel implements
 //        display.repaint();
     }
 
+
     public void mouseMoved(MouseEvent e) {
 
     }
 
     public void mouseClicked(MouseEvent e) {
-
+        //obsX = 75f;
     }
 
     public void mouseEntered(MouseEvent evt) {
@@ -333,20 +357,22 @@ public class ViewTwo extends JPanel implements
         gl.glTranslatef(-obsX, -obsY, -obsZ);
         gl.glRotatef(rotX, 1, 0, 0);
         gl.glRotatef(rotY, 0, 1, 0);
-        camera.lookAt(obsX, obsY, obsZ, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+        camera.lookAt(obsX, obsY, obsZ, posx, posy, posz, 0.0, 1.0, 0.0);
     }
 
     void desenhaChao() {
         gl.glColor3f(1, 0, 1);
         gl.glLineWidth(3);
         gl.glBegin(gl.GL_LINES);
-        for (float z = -1000; z <= 1000; z += 10) {
-            gl.glVertex3f(-1000, -0.1f, z);
-            gl.glVertex3f(1000, -0.1f, z);
+        for (float z = 0; z <= 2000; z += 10) {
+            gl.glVertex3f(0000, -0.1f, z);
+            gl.glVertex3f(2000, -0.1f, z);
         }
-        for (float x = -1000; x <= 1000; x += 10) {
-            gl.glVertex3f(x, -0.1f, -1000);
-            gl.glVertex3f(x, -0.1f, 1000);
+        for (float x = 0; x <= 2000; x += 10) {
+            //gl.glVertex3f(x, -0.1f, -1000);
+            //gl.glVertex3f(x, -0.1f, 1000);
+            gl.glVertex3f(x, -0.1f, 0000);
+            gl.glVertex3f(x, -0.1f, 2000);
         }
         gl.glEnd();
         gl.glLineWidth(1);
