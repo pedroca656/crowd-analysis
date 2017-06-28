@@ -29,11 +29,11 @@
       <file leaf-file-name="ViewTwo.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/pucrs/viewer/ViewTwo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1092">
-              <caret line="136" column="37" lean-forward="false" selection-start-line="136" selection-start-column="37" selection-end-line="136" selection-end-column="37" />
+            <state relative-caret-position="102">
+              <caret line="354" column="8" lean-forward="false" selection-start-line="354" selection-start-column="8" selection-end-line="354" selection-end-column="8" />
               <folding>
-                <element signature="e#6755#6756#0" expanded="true" />
-                <element signature="e#6826#6827#0" expanded="true" />
+                <element signature="e#6860#6861#0" expanded="true" />
+                <element signature="e#6931#6932#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -62,16 +62,16 @@
     <findStrings>
       <find>mouse</find>
       <find>obsX</find>
-      <find>look</find>
       <find>camera.</find>
       <find>tea</find>
       <find>obsx</find>
       <find>size</find>
-      <find>teapot</find>
       <find>window</find>
       <find>desenhaPessoas</find>
       <find>frame</find>
       <find>wir</find>
+      <find>teapot</find>
+      <find>look</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -707,12 +707,12 @@
       <workItem from="1498510466798" duration="5561000" />
       <workItem from="1498521290343" duration="1646000" />
       <workItem from="1498526698381" duration="118000" />
-      <workItem from="1498607420587" duration="9424000" />
+      <workItem from="1498607420587" duration="10560000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17050000" />
+    <option name="totallyTimeSpent" value="18186000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -757,7 +757,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="45" />
+      <option name="time" value="47" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1134,11 +1134,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pucrs/viewer/ViewTwo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1092">
-          <caret line="136" column="37" lean-forward="false" selection-start-line="136" selection-start-column="37" selection-end-line="136" selection-end-column="37" />
+        <state relative-caret-position="102">
+          <caret line="354" column="8" lean-forward="false" selection-start-line="354" selection-start-column="8" selection-end-line="354" selection-end-column="8" />
           <folding>
-            <element signature="e#6755#6756#0" expanded="true" />
-            <element signature="e#6826#6827#0" expanded="true" />
+            <element signature="e#6860#6861#0" expanded="true" />
+            <element signature="e#6931#6932#0" expanded="true" />
           </folding>
         </state>
       </provider>

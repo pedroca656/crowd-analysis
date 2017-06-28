@@ -31,7 +31,7 @@ public class ViewTwo extends JPanel implements
     private Float obsX = 500f, obsY = 500f, obsZ = 400f, obsX_ini, obsY_ini, obsZ_ini;
     private Float fAspect = 1f, angle = 44f;
     int x_ini, y_ini;
-    private float posx = 90f, posy = 90f, posz = 0f;
+    private float posx = 500f, posy = 500f, posz = 0f;
 
     private Camera camera;
 
@@ -113,12 +113,12 @@ public class ViewTwo extends JPanel implements
         // TODO: add drawing code!!
         EspecificaParametrosVisualizacao();
 
-        gl.glColor3f(0.0f, 0.0f, 1.0f);
+        gl.glColor3f(255f, 0.0f, 0.0f);
 
         gl.glPushMatrix();
-        gl.glTranslatef(500f, 0f, 500f);
+        gl.glTranslatef(posx, 5f, posy );
 
-        glut.glutWireTeapot(10);
+        glut.glutSolidCube(10);
         //gl.glTranslatef(posx, posy, posz);
 
         gl.glPopMatrix();
@@ -133,15 +133,8 @@ public class ViewTwo extends JPanel implements
 
     private void desenhaPessoas(int frame) {
         for (int j = 0; j < 100; j++) {
-            //gl.glPushMatrix();
             gl.glColor3f(0f, 0f, 255f);
             for (int i = 0; i < personList.size() - 1; i++) {
-                /*gl.glBegin(gl.GL_LINES);
-                //gl.glVertex3f(personList.get(i).getNextCoord().getX(), 0.0f, personList.get(i).getNextCoord().getY());
-                gl.glVertex3f(20,0,20);
-                gl.glVertex3f(0, 0, -20);
-                gl.glVertex3f(-20, 0, 20);*/
-                //gl.glEnd();
 
                 gl.glPushMatrix();
                 gl.glTranslatef(personList.get(i).getCoordsList().get(frame).getX(), 5f, personList.get(i).getCoordsList().get(frame).getY());
@@ -152,7 +145,6 @@ public class ViewTwo extends JPanel implements
 
 
             }
-            //gl.glPopMatrix();
         }
     }
 
@@ -189,27 +181,47 @@ public class ViewTwo extends JPanel implements
     /**
      * Called when the user presses any key.
      */
+
+    private Boolean onlyCamera = false;
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();  // Tells which key was pressed.
+        if(key == KeyEvent.VK_P){
+            if(onlyCamera){
+                onlyCamera = false;
+                obsX = posy;
+                obsY = posx;
+            }
+            else onlyCamera = true;
+        }
         if (key == KeyEvent.VK_LEFT) {
             obsX -= 15f;
-            //posx -= 15f;
+            if(!onlyCamera) {
+                posy -= 15f;
+            }
         }
         else if (key == KeyEvent.VK_RIGHT) {
             obsX += 15f;
-            //posx += 15f;
+            if(!onlyCamera) {
+                posy += 15f;
+            }
         }
         else if (key == KeyEvent.VK_DOWN) {
             obsY -= 15f;
-            //posy -= 15f;
+            if(!onlyCamera) {
+                posx -= 15f;
+            }
         }
         else if (key == KeyEvent.VK_UP) {
             obsY += 15f;
-            //posy += 15f;
+            if(!onlyCamera) {
+                posx += 15f;
+            }
         }
         else if (key == KeyEvent.VK_HOME) {
             obsY = obsY_ini;
-            obsX = obsX_ini;
+            if(!onlyCamera) {
+                obsX = obsX_ini;
+            }
         }
         //repaint();
     }
@@ -340,7 +352,7 @@ public class ViewTwo extends JPanel implements
     }
 
     public void mouseClicked(MouseEvent e) {
-        //obsX = 75f;
+        
     }
 
     public void mouseEntered(MouseEvent evt) {
